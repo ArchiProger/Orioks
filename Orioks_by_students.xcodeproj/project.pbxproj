@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D23303227FEFFBD83D93C5F /* Pods_Orioks_by_students.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */; };
+		C031B81F2752DEB6005B497A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031B81E2752DEB6005B497A /* MainView.swift */; };
+		C0688BD82752A59500041C51 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0688BD72752A59500041C51 /* Server.swift */; };
 		C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */; };
 		C0892E74275193020014D195 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E73275193020014D195 /* ContentView.swift */; };
 		C0892E76275193040014D195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0892E75275193040014D195 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 		04FE2FA0CDF99D08C75B27FE /* Pods-Orioks_by_students.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.release.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.release.xcconfig"; sourceTree = "<group>"; };
 		205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orioks_by_students.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.debug.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.debug.xcconfig"; sourceTree = "<group>"; };
+		C031B81E2752DEB6005B497A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C0688BD72752A59500041C51 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		C0892E6E275193020014D195 /* Orioks_by_students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orioks_by_students.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsApp.swift; sourceTree = "<group>"; };
 		C0892E73275193020014D195 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */,
 				C0892E73275193020014D195 /* ContentView.swift */,
 				C0892E9B275193680014D195 /* LoginForm.swift */,
+				C0688BD72752A59500041C51 /* Server.swift */,
+				C031B81E2752DEB6005B497A /* MainView.swift */,
 				C0892E75275193040014D195 /* Assets.xcassets */,
 				C0892E77275193040014D195 /* Preview Content */,
 			);
@@ -332,6 +338,8 @@
 			files = (
 				C0892E74275193020014D195 /* ContentView.swift in Sources */,
 				C0892E9C275193680014D195 /* LoginForm.swift in Sources */,
+				C0688BD82752A59500041C51 /* Server.swift in Sources */,
+				C031B81F2752DEB6005B497A /* MainView.swift in Sources */,
 				C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,10 +11,21 @@ import Kanna
 
 struct ContentView: View
 {
+    @State private var loginStatus: Bool? = nil
+    @State private var login = ""
+    @State private var password = ""
+
     var body: some View
     {
-        LoginForm()
-//        ErrorView()
+        if loginStatus == true && loginStatus != nil
+        {
+            Text("Home View")
+        }
+
+        else
+        {
+            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus)
+        }
     }
 }
 
