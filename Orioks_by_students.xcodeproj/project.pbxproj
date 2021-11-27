@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D23303227FEFFBD83D93C5F /* Pods_Orioks_by_students.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */; };
+		C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */; };
+		C0892E74275193020014D195 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E73275193020014D195 /* ContentView.swift */; };
+		C0892E76275193040014D195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0892E75275193040014D195 /* Assets.xcassets */; };
+		C0892E79275193040014D195 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0892E78275193040014D195 /* Preview Assets.xcassets */; };
+		C0892E83275193040014D195 /* Orioks_by_studentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E82275193040014D195 /* Orioks_by_studentsTests.swift */; };
+		C0892E8D275193040014D195 /* Orioks_by_studentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E8C275193040014D195 /* Orioks_by_studentsUITests.swift */; };
+		C0892E8F275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E8E275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift */; };
+		C0892E9C275193680014D195 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E9B275193680014D195 /* LoginForm.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0892E7F275193040014D195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0892E66275193020014D195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0892E6D275193020014D195;
+			remoteInfo = Orioks_by_students;
+		};
+		C0892E89275193040014D195 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0892E66275193020014D195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0892E6D275193020014D195;
+			remoteInfo = Orioks_by_students;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04FE2FA0CDF99D08C75B27FE /* Pods-Orioks_by_students.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.release.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.release.xcconfig"; sourceTree = "<group>"; };
+		205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orioks_by_students.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.debug.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.debug.xcconfig"; sourceTree = "<group>"; };
+		C0892E6E275193020014D195 /* Orioks_by_students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orioks_by_students.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsApp.swift; sourceTree = "<group>"; };
+		C0892E73275193020014D195 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C0892E75275193040014D195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C0892E78275193040014D195 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C0892E7E275193040014D195 /* Orioks_by_studentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Orioks_by_studentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0892E82275193040014D195 /* Orioks_by_studentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsTests.swift; sourceTree = "<group>"; };
+		C0892E88275193040014D195 /* Orioks_by_studentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Orioks_by_studentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0892E8C275193040014D195 /* Orioks_by_studentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsUITests.swift; sourceTree = "<group>"; };
+		C0892E8E275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0892E9B275193680014D195 /* LoginForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginForm.swift; path = ../../test/test/LoginForm.swift; sourceTree = "<group>"; };
+		C0892E9D275193810014D195 /* Orioks-by-students-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Orioks-by-students-Info.plist"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C0892E6B275193020014D195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D23303227FEFFBD83D93C5F /* Pods_Orioks_by_students.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E7B275193040014D195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E85275193040014D195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4720FF2102865E00FF44155A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E5C6FFCCDBD603FAE8C338E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */,
+				04FE2FA0CDF99D08C75B27FE /* Pods-Orioks_by_students.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C0892E65275193020014D195 = {
+			isa = PBXGroup;
+			children = (
+				C0892E70275193020014D195 /* Orioks_by_students */,
+				C0892E81275193040014D195 /* Orioks_by_studentsTests */,
+				C0892E8B275193040014D195 /* Orioks_by_studentsUITests */,
+				C0892E6F275193020014D195 /* Products */,
+				4E5C6FFCCDBD603FAE8C338E /* Pods */,
+				4720FF2102865E00FF44155A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C0892E6F275193020014D195 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0892E6E275193020014D195 /* Orioks_by_students.app */,
+				C0892E7E275193040014D195 /* Orioks_by_studentsTests.xctest */,
+				C0892E88275193040014D195 /* Orioks_by_studentsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0892E70275193020014D195 /* Orioks_by_students */ = {
+			isa = PBXGroup;
+			children = (
+				C0892E9D275193810014D195 /* Orioks-by-students-Info.plist */,
+				C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */,
+				C0892E73275193020014D195 /* ContentView.swift */,
+				C0892E9B275193680014D195 /* LoginForm.swift */,
+				C0892E75275193040014D195 /* Assets.xcassets */,
+				C0892E77275193040014D195 /* Preview Content */,
+			);
+			path = Orioks_by_students;
+			sourceTree = "<group>";
+		};
+		C0892E77275193040014D195 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C0892E78275193040014D195 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C0892E81275193040014D195 /* Orioks_by_studentsTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0892E82275193040014D195 /* Orioks_by_studentsTests.swift */,
+			);
+			path = Orioks_by_studentsTests;
+			sourceTree = "<group>";
+		};
+		C0892E8B275193040014D195 /* Orioks_by_studentsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C0892E8C275193040014D195 /* Orioks_by_studentsUITests.swift */,
+				C0892E8E275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift */,
+			);
+			path = Orioks_by_studentsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C0892E6D275193020014D195 /* Orioks_by_students */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0892E92275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_students" */;
+			buildPhases = (
+				C3A0780FC78D88C0E1421AF5 /* [CP] Check Pods Manifest.lock */,
+				C0892E6A275193020014D195 /* Sources */,
+				C0892E6B275193020014D195 /* Frameworks */,
+				C0892E6C275193020014D195 /* Resources */,
+				C3CCE08BD15DED1486643BF3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Orioks_by_students;
+			productName = Orioks_by_students;
+			productReference = C0892E6E275193020014D195 /* Orioks_by_students.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C0892E7D275193040014D195 /* Orioks_by_studentsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0892E95275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsTests" */;
+			buildPhases = (
+				C0892E7A275193040014D195 /* Sources */,
+				C0892E7B275193040014D195 /* Frameworks */,
+				C0892E7C275193040014D195 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0892E80275193040014D195 /* PBXTargetDependency */,
+			);
+			name = Orioks_by_studentsTests;
+			productName = Orioks_by_studentsTests;
+			productReference = C0892E7E275193040014D195 /* Orioks_by_studentsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C0892E87275193040014D195 /* Orioks_by_studentsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0892E98275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsUITests" */;
+			buildPhases = (
+				C0892E84275193040014D195 /* Sources */,
+				C0892E85275193040014D195 /* Frameworks */,
+				C0892E86275193040014D195 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0892E8A275193040014D195 /* PBXTargetDependency */,
+			);
+			name = Orioks_by_studentsUITests;
+			productName = Orioks_by_studentsUITests;
+			productReference = C0892E88275193040014D195 /* Orioks_by_studentsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C0892E66275193020014D195 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					C0892E6D275193020014D195 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					C0892E7D275193040014D195 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = C0892E6D275193020014D195;
+					};
+					C0892E87275193040014D195 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = C0892E6D275193020014D195;
+					};
+				};
+			};
+			buildConfigurationList = C0892E69275193020014D195 /* Build configuration list for PBXProject "Orioks_by_students" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C0892E65275193020014D195;
+			productRefGroup = C0892E6F275193020014D195 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C0892E6D275193020014D195 /* Orioks_by_students */,
+				C0892E7D275193040014D195 /* Orioks_by_studentsTests */,
+				C0892E87275193040014D195 /* Orioks_by_studentsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C0892E6C275193020014D195 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0892E79275193040014D195 /* Preview Assets.xcassets in Resources */,
+				C0892E76275193040014D195 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E7C275193040014D195 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E86275193040014D195 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3A0780FC78D88C0E1421AF5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Orioks_by_students-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3CCE08BD15DED1486643BF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C0892E6A275193020014D195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0892E74275193020014D195 /* ContentView.swift in Sources */,
+				C0892E9C275193680014D195 /* LoginForm.swift in Sources */,
+				C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E7A275193040014D195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0892E83275193040014D195 /* Orioks_by_studentsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0892E84275193040014D195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0892E8F275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift in Sources */,
+				C0892E8D275193040014D195 /* Orioks_by_studentsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0892E80275193040014D195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0892E6D275193020014D195 /* Orioks_by_students */;
+			targetProxy = C0892E7F275193040014D195 /* PBXContainerItemProxy */;
+		};
+		C0892E8A275193040014D195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0892E6D275193020014D195 /* Orioks_by_students */;
+			targetProxy = C0892E89275193040014D195 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C0892E90275193040014D195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C0892E91275193040014D195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C0892E93275193040014D195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Orioks_by_students/Preview Content\"";
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Orioks-by-students-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Arthur.Orioks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C0892E94275193040014D195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04FE2FA0CDF99D08C75B27FE /* Pods-Orioks_by_students.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Orioks_by_students/Preview Content\"";
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Orioks-by-students-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Arthur.Orioks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C0892E96275193040014D195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Arthur.Orioks-by-studentsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orioks_by_students.app/Orioks_by_students";
+			};
+			name = Debug;
+		};
+		C0892E97275193040014D195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Arthur.Orioks-by-studentsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orioks_by_students.app/Orioks_by_students";
+			};
+			name = Release;
+		};
+		C0892E99275193040014D195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Arthur.Orioks-by-studentsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Orioks_by_students;
+			};
+			name = Debug;
+		};
+		C0892E9A275193040014D195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H4S5B9F55T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Arthur.Orioks-by-studentsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Orioks_by_students;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C0892E69275193020014D195 /* Build configuration list for PBXProject "Orioks_by_students" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0892E90275193040014D195 /* Debug */,
+				C0892E91275193040014D195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0892E92275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_students" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0892E93275193040014D195 /* Debug */,
+				C0892E94275193040014D195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0892E95275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0892E96275193040014D195 /* Debug */,
+				C0892E97275193040014D195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0892E98275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0892E99275193040014D195 /* Debug */,
+				C0892E9A275193040014D195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C0892E66275193020014D195 /* Project object */;
+}

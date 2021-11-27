@@ -1,0 +1,6 @@
+framework module Pods_Orioks_by_students {
+  umbrella header "Pods-Orioks_by_students-umbrella.h"
+
+  export *
+  module * { export * }
+}
