@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2D23303227FEFFBD83D93C5F /* Pods_Orioks_by_students.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */; };
-		C04660112753C20D00445649 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04660102753C20D00445649 /* HomeView.swift */; };
 		C04660132753C24000445649 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04660122753C24000445649 /* Menu.swift */; };
 		C0688BD82752A59500041C51 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0688BD72752A59500041C51 /* Server.swift */; };
 		C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */; };
@@ -19,6 +18,7 @@
 		C0892E8D275193040014D195 /* Orioks_by_studentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E8C275193040014D195 /* Orioks_by_studentsUITests.swift */; };
 		C0892E8F275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E8E275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift */; };
 		C0892E9C275193680014D195 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E9B275193680014D195 /* LoginForm.swift */; };
+		C0ED8BFF275525860000B4C3 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED8BFE275525860000B4C3 /* News.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		04FE2FA0CDF99D08C75B27FE /* Pods-Orioks_by_students.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.release.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.release.xcconfig"; sourceTree = "<group>"; };
 		205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orioks_by_students.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.debug.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.debug.xcconfig"; sourceTree = "<group>"; };
-		C04660102753C20D00445649 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = /Users/arturdanilov/Projects/swift/Orioks_by_students/Orioks_by_students/HomeView.swift; sourceTree = "<absolute>"; };
 		C04660122753C24000445649 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		C0688BD72752A59500041C51 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		C0892E6E275193020014D195 /* Orioks_by_students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orioks_by_students.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +56,7 @@
 		C0892E8E275193040014D195 /* Orioks_by_studentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orioks_by_studentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0892E9B275193680014D195 /* LoginForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginForm.swift; path = ../../test/test/LoginForm.swift; sourceTree = "<group>"; };
 		C0892E9D275193810014D195 /* Orioks-by-students-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Orioks-by-students-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C0ED8BFE275525860000B4C3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +132,8 @@
 				C0892E73275193020014D195 /* ContentView.swift */,
 				C0892E9B275193680014D195 /* LoginForm.swift */,
 				C0688BD72752A59500041C51 /* Server.swift */,
-				C04660102753C20D00445649 /* HomeView.swift */,
 				C04660122753C24000445649 /* Menu.swift */,
+				C0ED8BFE275525860000B4C3 /* News.swift */,
 				C0892E75275193040014D195 /* Assets.xcassets */,
 				C0892E77275193040014D195 /* Preview Content */,
 			);
@@ -343,7 +343,7 @@
 				C0892E74275193020014D195 /* ContentView.swift in Sources */,
 				C0892E9C275193680014D195 /* LoginForm.swift in Sources */,
 				C0688BD82752A59500041C51 /* Server.swift in Sources */,
-				C04660112753C20D00445649 /* HomeView.swift in Sources */,
+				C0ED8BFF275525860000B4C3 /* News.swift in Sources */,
 				C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

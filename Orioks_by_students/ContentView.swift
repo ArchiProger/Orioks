@@ -19,7 +19,7 @@ struct ContentView: View
     {
         if loginStatus == true && loginStatus != nil
         {
-            Text("Home View")
+            News()
         }
 
         else

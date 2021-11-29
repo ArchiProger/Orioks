@@ -35,10 +35,8 @@ struct Icon: View
             .resizable()
             .frame(width: self.diameter / 12, height: self.diameter / 12)
             .scaleEffect(self.scale)
-            .offset(x: -(self.diameter * 0.439) * cos(radianes(angle: self.angle)), y: -(self.diameter * 0.439) * sin(radianes(angle: self.angle)))
-            .opacity(transparencyOfCircle ? 1 : 0)
             .gesture(
-                LongPressGesture(minimumDuration: 0.3)
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
                     .onChanged { value in
                         if !self.focus
                         {
@@ -49,10 +47,13 @@ struct Icon: View
                     }
                     .onEnded { _ in
                         //Open the page
+                        self.feedback.impactOccurred()
                         self.scale = 1
                         self.focus.toggle()
                     }
             )
+            .offset(x: -(self.diameter * 0.439) * cos(radianes(angle: self.angle)), y: -(self.diameter * 0.439) * sin(radianes(angle: self.angle)))
+            .opacity(transparencyOfCircle ? 1 : 0)
     }
 }
 
@@ -91,7 +92,7 @@ struct Menu: View
                 .offset(x: -(self.diameter * 0.12), y: -(self.diameter * 0.12))
                 .opacity(transparencyOfCircle ? 1 : 0)
                 .gesture(
-                    LongPressGesture(minimumDuration: 0.3)
+                    LongPressGesture(minimumDuration: 0.01)
                         .onChanged { _ in
                             if !self.focus
                             {

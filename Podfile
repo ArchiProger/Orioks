@@ -6,6 +6,6 @@ target 'Orioks_by_students' do
   # Comment the next line if you don't want to use dynamic frameworks
 
 	pod 'Alamofire', '~> 4.2'
-	pod 'Kanna', '~>4.0.0'
+	pod 'Kanna', '~> 5.2.2'
 
 end
