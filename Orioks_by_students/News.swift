@@ -7,15 +7,24 @@
 
 import SwiftUI
 
-struct NewsCard: View
+struct Section: Identifiable
+{
+    var id = UUID()
+    var date: String
+    var time: String
+    var header: String
+    var news: String
+}
+
+struct NewsCard: View, Identifiable
 {
     @State var date: String
     @State var time: String
     @State var header: String
     @State var news: String
-
     @State private var open = false
 
+    var id = UUID()
     private let minHeight = UIScreen.screenHeight * 0.2
     private let maxHeight = UIScreen.screenHeight * 0.8
 
@@ -86,6 +95,7 @@ struct NewsCard: View
 
                         Spacer()
                         Text(self.header)
+                            .frame(width: UIScreen.screenWidth * 0.8, height: self.minHeight * 0.5)
                         Spacer()
                     }
                 }
@@ -108,16 +118,34 @@ struct NewsCard: View
 
 struct News: View
 {
+    @Binding var newsInfo: [[String]]
+    
     var body: some View
     {
         NavigationView
         {
-            ScrollView
+            if self.newsInfo.count != 0
             {
-                NewsCard(date: "02.11.21", time: "13:56", header: "Группа ПИН-22. Перевод в дистанционный режим обучения в связи с возникшими случаями заболевания новой коронавирусной инфекцией (Covid-19)", news: "Вниманию преподавателей и студентов! В связи с возникшими случаями заболевания новой коронавирусной инфекцией (Covid-19) обучающиеся  группы ПИН-22 переводятся в дистанционный режим обучения с сохранением расписания занятий (преподаватели проводят занятия в дистанционном формате по расписанию). Всем студентам необходимо соблюдать режим самоизоляции по 13.11.2021 г. включительно.")
+                ScrollView
+                {
+                    VStack
+                    {
+                        ForEach(self.newsInfo.indices, id: \.self) { i in
+
+                            NewsCard(date: self.newsInfo[i][0], time: self.newsInfo[i][1], header: self.newsInfo[i][2], news: self.newsInfo[i][3])
+                        }
+                    }
+                }
+                .navigationTitle("Новости")
+                .navigationBarTitleDisplayMode(.automatic)
             }
-            .navigationTitle("Новости")
-            .navigationBarTitleDisplayMode(.automatic)
+
+            else
+            {
+                Text("Новостей нет")
+                    .navigationTitle("Новости")
+                    .navigationBarTitleDisplayMode(.automatic)
+            }
         }
     }
 }
@@ -126,6 +154,6 @@ struct News_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        News()
+        NewsCard(date: "02.11.21", time: "13:56", header: "Группа ПИН-22. Перевод в дистанционный режим обучения в связи с возникшими случаями заболевания новой коронавирусной инфекцией (Covid-19)", news: "Вниманию преподавателей и студентов! В связи с возникшими случаями заболевания новой коронавирусной инфекцией (Covid-19) обучающиеся  группы ПИН-22 переводятся в дистанционный режим обучения с сохранением расписания занятий (преподаватели проводят занятия в дистанционном формате по расписанию). Всем студентам необходимо соблюдать режим самоизоляции по 13.11.2021 г. включительно.")
     }
 }
