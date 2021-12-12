@@ -15,17 +15,19 @@ struct ContentView: View
     @State private var login = ""
     @State private var password = ""
     @State private var newsInfo: [[String]] = []
+    @State private var marksData = Education(dises: [])
 
     var body: some View
     {
         if loginStatus == true && loginStatus != nil
         {
-            News(newsInfo: self.$newsInfo)
+//            News(newsInfo: self.$newsInfo)
+            Marks(data: self.$marksData)
         }
 
         else
         {
-            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo)
+            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData)
         }
     }
 }

@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-struct Section: Identifiable
-{
-    var id = UUID()
-    var date: String
-    var time: String
-    var header: String
-    var news: String
-}
-
 struct NewsCard: View, Identifiable
 {
     @State var date: String
@@ -102,7 +93,7 @@ struct NewsCard: View, Identifiable
             }
             .padding()
             .frame(width: UIScreen.screenWidth * 0.9, height: self.open ? self.maxHeight : self.minHeight)
-            .background(Color.cyan)
+            .background(Color("NewsCard.Background"))
             .cornerRadius(25)
             .shadow(radius: 10)
             .onTapGesture
@@ -124,27 +115,31 @@ struct News: View
     {
         NavigationView
         {
-            if self.newsInfo.count != 0
+            ZStack
             {
-                ScrollView
+                Color("Background").ignoresSafeArea(.all)
+                if self.newsInfo.count != 0
                 {
-                    VStack
+                    ScrollView
                     {
-                        ForEach(self.newsInfo.indices, id: \.self) { i in
+                        VStack
+                        {
+                            ForEach(self.newsInfo.indices, id: \.self) { i in
 
-                            NewsCard(date: self.newsInfo[i][0], time: self.newsInfo[i][1], header: self.newsInfo[i][2], news: self.newsInfo[i][3])
+                                NewsCard(date: self.newsInfo[i][0], time: self.newsInfo[i][1], header: self.newsInfo[i][2], news: self.newsInfo[i][3])
+                            }
                         }
                     }
-                }
-                .navigationTitle("Новости")
-                .navigationBarTitleDisplayMode(.automatic)
-            }
-
-            else
-            {
-                Text("Новостей нет")
                     .navigationTitle("Новости")
                     .navigationBarTitleDisplayMode(.automatic)
+                }
+
+                else
+                {
+                    Text("Новостей нет")
+                        .navigationTitle("Новости")
+                        .navigationBarTitleDisplayMode(.automatic)
+                }
             }
         }
     }

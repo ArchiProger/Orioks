@@ -58,6 +58,7 @@ struct Server
     @State var password: String
     @Binding var loginStatus: Bool?
     @Binding var newsInfo: [[String]]
+    @Binding var marksData: Education
 
     func getHTML(value: String?) -> HTMLDocument
     {
@@ -107,7 +108,7 @@ struct Server
 
                     if self.loginStatus != nil && self.loginStatus == true
                     {
-                        Alamofire.request("https://orioks.miet.ru")
+                        Alamofire.request("https://orioks.miet.ru") //News
                             .responseString { response in
 
                                 let links = getHTML(value: response.result.value).xpath("//div[@id='news']//a")
@@ -119,8 +120,8 @@ struct Server
 
                                             switch response.result
                                             {
-                                            case .success(let value):
-                                                var info = NewsInfo()
+                                            case .success(_):
+                                                let info = NewsInfo()
                                                 let html = getHTML(value: response.result.value).xpath("//div[@class='well']//text()")
                                                 info.parsDoc(htmlDoc: html)
                                                 self.newsInfo.append(info.getInfoArray())
@@ -131,6 +132,30 @@ struct Server
                                         }
                                 }
 
+                            }
+
+                        Alamofire.request("https://orioks.miet.ru/student/student") // Marks
+                            .responseString { response in
+
+                                switch response.result
+                                {
+                                case .success(let value):
+
+                                    let data = getHTML(value: value).xpath("//div[@id='forang']")[0].text!
+
+                                    do
+                                    {
+                                        self.marksData = try JSONDecoder().decode(Education.self, from: Data(data.utf8))
+                                    }
+
+                                    catch
+                                    {
+                                        print(error)
+                                    }
+
+                                case .failure(let error):
+                                    print(error)
+                                }
                             }
                     }
                 }
