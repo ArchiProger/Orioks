@@ -7,6 +7,39 @@
 
 import SwiftUI
 
+func getCircleColor(b: Float, mvd: Float) -> Color
+{
+    let performance = b / mvd
+    var returnColor = Color.white
+
+    if performance < 0.2
+    {
+        returnColor = Color.red
+    }
+
+    else if performance < 0.5
+    {
+        returnColor = Color("Red")
+    }
+
+    else if performance < 0.7
+    {
+        returnColor = Color("Orange")
+    }
+
+    else if performance < 0.9
+    {
+        returnColor = Color("Green")
+    }
+
+    else if performance <= 100
+    {
+        returnColor = Color.green
+    }
+
+    return returnColor
+}
+
 extension Float
 {
     var clean: String
@@ -15,18 +48,115 @@ extension Float
     }
 }
 
+struct Events: View
+{
+    @State var isOpen = false
+    
+    @Binding var event: AllKms
+    
+    var body: some View
+    {
+        VStack
+        {
+            HStack
+            {
+                Text("\(self.event.week)")
+                Text(self.event.type == nil ? "Экзамен" : self.event.type!.name)
+                
+                Text("(\(self.event.sh))")
+                    .fontWeight(.heavy)
+
+                
+                Spacer()
+                
+                Text("\(self.event.max_ball.clean)")
+                
+                ZStack
+                {
+                    Text(self.event.balls.count == 0 ? "-": "\(self.event.balls[0].ball.clean)")
+                    
+                    Rectangle()
+                        .stroke(Color("Violet"), style: StrokeStyle(lineWidth: 3))
+                        .frame(width: 50, height: 30)
+                        .cornerRadius(4)
+                    
+                    Rectangle()
+                        .trim(from: CGFloat(self.event.balls.count == 0 ? 1 : 1 - (self.event.balls[0].ball / self.event.max_ball)), to: 1)
+                        .stroke(getCircleColor(b: self.event.balls.count == 0 ? 0 : self.event.balls[0].ball, mvd: self.event.max_ball), style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
+                        .rotationEffect(Angle(degrees: 180))
+                        .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
+                        .frame(width: 50, height: 30)
+                        .cornerRadius(4)
+                }
+            }
+            
+            HStack
+            {
+                Capsule()
+                    .fill(Color.gray)
+                    .frame(width: UIScreen.screenWidth * 0.7, height: 2)
+                
+                Spacer()
+            }
+        }
+    }
+}
+
 struct CardView: View
 {
+    @Binding var dise: Dises
+    
     var body: some View
     {
         ZStack
         {
             Color("Background").ignoresSafeArea(.all)
-            VStack
+            
+            ScrollView
             {
-                Text("Работы")
+                Text(dise.name)
+                    .bold()
                     .font(.title)
-                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .frame(width: UIScreen.screenWidth * 0.8)
+                    .padding(.bottom, 40)
+                
+                HStack
+                {
+                    Spacer()
+                    
+                    VStack
+                    {
+                        ForEach(self.dise.segments[0].allKms.indices, id: \.self) { i in
+                            
+                            Events(event: self.$dise.segments[0].allKms[i])
+                                .padding(10)
+                            
+                        }
+                        
+                        HStack
+                        {
+                            Text("Текущая оценка")
+                            
+                            Spacer()
+                            
+                            ZStack
+                            {
+                                Rectangle()
+                                    .fill(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                                    .frame(width: 80, height: 30)
+                                    .cornerRadius(4)
+                                
+                                Text(self.dise.grade.w)
+                            }
+                        }.padding(10)
+                    }
+                    .background(Color("MarksCard.Background"))
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
+                    
+                    Spacer()
+                }
             }
         }
     }
@@ -74,39 +204,6 @@ struct DisciplineCard: View
 
     private let side = UIScreen.screenWidth * 0.46
 
-    func getCircleColor() -> Color
-    {
-        let performance = self.dise.grade.b / self.dise.mvb
-        var returnColor = Color.white
-
-        if performance < 0.2
-        {
-            returnColor = Color.red
-        }
-
-        else if performance < 0.5
-        {
-            returnColor = Color("Red")
-        }
-
-        else if performance < 0.7
-        {
-            returnColor = Color("Orange")
-        }
-
-        else if performance < 0.9
-        {
-            returnColor = Color("Green")
-        }
-
-        else if performance <= 100
-        {
-            returnColor = Color.green
-        }
-
-        return returnColor
-    }
-
     var body: some View
     {
         ZStack
@@ -122,7 +219,7 @@ struct DisciplineCard: View
 
                 ZStack
                 {
-                    DynamicCircle(maxBall: self.$dise.mvb, balls: self.$dise.grade.b, color: self.getCircleColor())
+                    DynamicCircle(maxBall: self.$dise.mvb, balls: self.$dise.grade.b, color: getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
 
                     VStack(spacing: 0.2)
                     {
@@ -146,6 +243,7 @@ struct DisciplineCard: View
 struct Marks: View
 {
     @Binding var data: Education
+    @Binding var menuOpen: Bool
 
     var body: some View
     {
@@ -164,14 +262,14 @@ struct Marks: View
                             HStack(spacing: 7)
                             {
                                 Spacer()
-
-                                NavigationLink(destination: CardView())
+                                
+                                NavigationLink(destination: CardView(dise: self.$data.dises[i]))
                                 {
                                     DisciplineCard(dise: self.$data.dises[i])
                                         .shadow(radius: 10)
                                 }.foregroundColor(Color(uiColor: .label))
 
-                                NavigationLink(destination: CardView())
+                                NavigationLink(destination: CardView(dise: self.$data.dises[i + 1]))
                                 {
                                     DisciplineCard(dise: self.$data.dises[i + 1])
                                         .shadow(radius: 10)
@@ -183,7 +281,7 @@ struct Marks: View
 
                         if (data.dises.count % 2 != 0)
                         {
-                            NavigationLink(destination: CardView())
+                            NavigationLink(destination: CardView(dise: self.$data.dises.last!))
                             {
                                 DisciplineCard(dise: self.$data.dises.last!)
                                     .shadow(radius: 10)
@@ -192,15 +290,25 @@ struct Marks: View
                     }
                 }
             }
-            .navigationTitle("Успеваемость")
-            .navigationViewStyle(.automatic)
+            .navigationBarTitle("Оценки", displayMode: .automatic)
+            .navigationBarItems(trailing:
+                Image(self.menuOpen ? "Exit" : "Menu")
+                    .resizable()
+                    .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                    .onTapGesture
+                    {
+                        self.menuOpen.toggle()
+                    }
+            )
         }
     }
 }
 
-struct Marks_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
+/* Marks_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        Events()
             .preferredColorScheme(.dark)
     }
-}
+}*/

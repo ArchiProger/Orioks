@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "bell.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "newspaper@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -33,15 +33,16 @@ struct Segments: Decodable
 
 struct AllKms: Decodable
 {
-    var name: String? //Кодировка работы
-    var max_ball: Int //Максимальный балл за нее
-    var type: TypeOf?
+    var sh: String //Кодировка работы
+    var max_ball: Float //Максимальный балл за нее
     var balls: [Balls]
+    var type: TypeOf!
+    var week: Int
 }
 
 struct TypeOf: Decodable
 {
-    var name: String// Название работы
+    var name: String
 }
 
 struct Balls: Decodable

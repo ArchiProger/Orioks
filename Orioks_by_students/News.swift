@@ -14,17 +14,17 @@ struct NewsCard: View, Identifiable
     @State var header: String
     @State var news: String
     @State private var open = false
-
+    
     var id = UUID()
     private let minHeight = UIScreen.screenHeight * 0.2
     private let maxHeight = UIScreen.screenHeight * 0.8
-
+    
     var body: some View
     {
         HStack
         {
             Spacer()
-
+            
             ZStack()
             {
                 VStack()
@@ -38,18 +38,18 @@ struct NewsCard: View, Identifiable
                                 Text("Дата: ")
                                     .font(.title3)
                                     .fontWeight(.bold)
-
+                                
                                 Text(self.date)
-
+                                
                                 Spacer()
-
+                                
                                 Text("Время:")
                                     .font(.title3)
                                     .fontWeight(.bold)
-
+                                
                                 Text(self.time)
                             }
-
+                            
                             HStack
                             {
                                 Text(self.header)
@@ -57,14 +57,14 @@ struct NewsCard: View, Identifiable
                                     .fontWeight(.bold)
                                 Spacer()
                             }.padding(.top, 10)
-
+                            
                             Text(self.news)
                                 .padding(.top, 2)
-
+                            
                             Spacer()
                         }
                     }
-
+                    
                     else
                     {
                         HStack
@@ -72,18 +72,18 @@ struct NewsCard: View, Identifiable
                             Text("Дата: ")
                                 .font(.title3)
                                 .fontWeight(.bold)
-
+                            
                             Text(self.date)
-
+                            
                             Spacer()
-
+                            
                             Text("Время:")
                                 .font(.title3)
                                 .fontWeight(.bold)
-
+                            
                             Text(self.time)
                         }
-
+                        
                         Spacer()
                         Text(self.header)
                             .frame(width: UIScreen.screenWidth * 0.8, height: self.minHeight * 0.5)
@@ -101,7 +101,7 @@ struct NewsCard: View, Identifiable
                 self.open.toggle()
             }
             .animation(.easeIn)
-
+            
             Spacer()
         }
     }
@@ -110,6 +110,7 @@ struct NewsCard: View, Identifiable
 struct News: View
 {
     @Binding var newsInfo: [[String]]
+    @Binding var menuOpen: Bool
     
     var body: some View
     {
@@ -125,20 +126,36 @@ struct News: View
                         VStack
                         {
                             ForEach(self.newsInfo.indices, id: \.self) { i in
-
+                                
                                 NewsCard(date: self.newsInfo[i][0], time: self.newsInfo[i][1], header: self.newsInfo[i][2], news: self.newsInfo[i][3])
                             }
                         }
                     }
-                    .navigationTitle("Новости")
-                    .navigationBarTitleDisplayMode(.automatic)
+                    .navigationBarTitle("Новости", displayMode: .automatic)
+                    .navigationBarItems(trailing:
+                        Image(self.menuOpen ? "Exit" : "Menu")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                            .onTapGesture
+                            {
+                                self.menuOpen.toggle()
+                            }
+                    )
                 }
-
+                
                 else
                 {
                     Text("Новостей нет")
-                        .navigationTitle("Новости")
-                        .navigationBarTitleDisplayMode(.automatic)
+                        .navigationBarTitle("Новости", displayMode: .automatic)
+                        .navigationBarItems(trailing:
+                            Image(self.menuOpen ? "Exit" : "Menu")
+                                .resizable()
+                                .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                                .onTapGesture
+                                {
+                                    self.menuOpen.toggle()
+                                }
+                        )
                 }
             }
         }

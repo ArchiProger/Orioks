@@ -515,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Orioks_by_students/Preview Content\"";
-				DEVELOPMENT_TEAM = H4S5B9F55T;
+				DEVELOPMENT_TEAM = 7852B54T64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Orioks-by-students-Info.plist";
@@ -548,7 +548,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Orioks_by_students/Preview Content\"";
-				DEVELOPMENT_TEAM = H4S5B9F55T;
+				DEVELOPMENT_TEAM = 7852B54T64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Orioks-by-students-Info.plist";
