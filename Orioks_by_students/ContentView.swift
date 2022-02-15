@@ -18,6 +18,7 @@ struct ContentView: View
     @State private var marksData = Education(dises: [])
     @State private var menuOpen = false
     @State private var openViewID: Int = 0
+    @State private var studentGroup: String = ""
     
     var body: some View
     {
@@ -25,7 +26,7 @@ struct ContentView: View
         {                
             ZStack
             {
-                Menu(menuOpen: self.$menuOpen, openViewID: self.$openViewID)
+                Menu(menuOpen: self.$menuOpen, openViewID: self.$openViewID, studentGroup: self.$studentGroup)
                 
                 switch self.openViewID
                 {
@@ -44,7 +45,11 @@ struct ContentView: View
                         .ignoresSafeArea(.all)
                     
                 default:
-                    Text("Hello, World")
+                    Schedule(group: self.$studentGroup, menuOpen: self.$menuOpen)
+                        .cornerRadius(self.menuOpen ? 10 : 0)
+                        .rotationEffect(self.menuOpen ? Angle(degrees: -5) : Angle(degrees: 0))
+                        .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
+                        .ignoresSafeArea(.all)
                 }
             }
             .animation(.easeIn(duration: 0.3))
@@ -52,7 +57,7 @@ struct ContentView: View
         
         else
         {
-            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData)
+            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData, studentGroup: self.$studentGroup)
         }
     }
 }

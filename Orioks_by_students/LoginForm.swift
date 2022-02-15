@@ -15,6 +15,7 @@ struct LoginForm: View
     @Binding var loginStatus: Bool?
     @Binding var newsInfo: [[String]]
     @Binding var marksData: Education
+    @Binding var studentGroup: String
     @State private var _isPasOpen = false
 
     var body: some View
@@ -101,9 +102,8 @@ struct LoginForm: View
 
                         Button(action:
                         {
-                            let req = Server(login: self.login, password: self.password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData)
+                            let req = Server(login: self.login, password: self.password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData, studentGroup: self.$studentGroup)
                             req.PostRequest()
-                            print(self.newsInfo)
                         })
                         {
                             ZStack

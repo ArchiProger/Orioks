@@ -59,6 +59,7 @@ struct Server
     @Binding var loginStatus: Bool?
     @Binding var newsInfo: [[String]]
     @Binding var marksData: Education
+    @Binding var studentGroup: String
 
     func getHTML(value: String?) -> HTMLDocument
     {
@@ -142,6 +143,7 @@ struct Server
                                 case .success(let value):
 
                                     let data = getHTML(value: value).xpath("//div[@id='forang']")[0].text!
+                                    self.studentGroup = getHTML(value: value).xpath("//select[@class='input-sm']//option")[0].text!.components(separatedBy: " ")[0]
 
                                     do
                                     {

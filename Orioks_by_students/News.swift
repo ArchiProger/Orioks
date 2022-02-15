@@ -135,7 +135,7 @@ struct News: View
                     .navigationBarItems(trailing:
                         Image(self.menuOpen ? "Exit" : "Menu")
                             .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                            .frame(width: UIScreen.screenWidth * 0.05, height: UIScreen.screenWidth * 0.05)
                             .onTapGesture
                             {
                                 self.menuOpen.toggle()
@@ -150,7 +150,7 @@ struct News: View
                         .navigationBarItems(trailing:
                             Image(self.menuOpen ? "Exit" : "Menu")
                                 .resizable()
-                                .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                                .frame(width: UIScreen.screenWidth * 0.05, height: UIScreen.screenWidth * 0.05)
                                 .onTapGesture
                                 {
                                     self.menuOpen.toggle()

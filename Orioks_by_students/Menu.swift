@@ -38,6 +38,16 @@ struct Menu: View
 {
     @Binding var menuOpen: Bool
     @Binding var openViewID: Int
+    @Binding var studentGroup: String
+    @State private var date = Date()
+    
+    func getWeekInfo() -> String
+    {
+        let calendar = Calendar.current
+        let week = calendar.component(.weekOfYear, from: date) + 1
+        
+        return "\(week % 3 == 0 ? 2 : 1)-й " + (week % 2 == 0 ? "знаменатель" : "числитель")
+    }
     
     var body: some View
     {
@@ -60,11 +70,12 @@ struct Menu: View
                         
                         VStack
                         {
-                            Text("12 неделя")
-                                .font(.title2)
+                            Text(self.getWeekInfo())
+                                .font(.title3)
                                 .foregroundColor(Color.black)
-                            Text("Числитель")
-                                .font(.title2)
+                            
+                            Text(self.studentGroup)
+                                .font(.title3)
                                 .foregroundColor(Color.black)
                         }
                     }

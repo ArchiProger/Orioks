@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Text.png",
+      "filename" : "menucard.fill@2x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Menu.png",
+      "filename" : "menucard.fill@2x-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
