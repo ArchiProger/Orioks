@@ -109,8 +109,9 @@ struct NewsCard: View, Identifiable
 
 struct News: View
 {
-    @Binding var newsInfo: [[String]]
     @Binding var menuOpen: Bool
+    
+    @EnvironmentObject var server: Server
     
     var body: some View
     {
@@ -119,23 +120,24 @@ struct News: View
             ZStack
             {
                 Color("Background").ignoresSafeArea(.all)
-                if self.newsInfo.count != 0
+                if self.server.newsInfo.count != 0
                 {
                     ScrollView
                     {
                         VStack
                         {
-                            ForEach(self.newsInfo.indices, id: \.self) { i in
+                            ForEach(self.server.newsInfo.indices, id: \.self) { i in
                                 
-                                NewsCard(date: self.newsInfo[i][0], time: self.newsInfo[i][1], header: self.newsInfo[i][2], news: self.newsInfo[i][3])
+                                NewsCard(date: self.server.newsInfo[i][0], time: self.server.newsInfo[i][1], header: self.server.newsInfo[i][2], news: self.server.newsInfo[i][3])
                             }
                         }
                     }
                     .navigationBarTitle("Новости", displayMode: .automatic)
                     .navigationBarItems(trailing:
-                        Image(self.menuOpen ? "Exit" : "Menu")
+                        Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
                             .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.05, height: UIScreen.screenWidth * 0.05)
+                            .foregroundColor(Color("ElementsColor"))
+                            .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
                             .onTapGesture
                             {
                                 self.menuOpen.toggle()
@@ -148,9 +150,10 @@ struct News: View
                     Text("Новостей нет")
                         .navigationBarTitle("Новости", displayMode: .automatic)
                         .navigationBarItems(trailing:
-                            Image(self.menuOpen ? "Exit" : "Menu")
+                            Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
                                 .resizable()
-                                .frame(width: UIScreen.screenWidth * 0.05, height: UIScreen.screenWidth * 0.05)
+                                .foregroundColor(Color("ElementsColor"))
+                                .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
                                 .onTapGesture
                                 {
                                     self.menuOpen.toggle()

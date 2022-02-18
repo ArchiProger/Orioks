@@ -10,13 +10,11 @@ import SwiftUI
 
 struct LoginForm: View
 {
-    @Binding var login: String
-    @Binding var password: String
-    @Binding var loginStatus: Bool?
-    @Binding var newsInfo: [[String]]
-    @Binding var marksData: Education
-    @Binding var studentGroup: String
+    @State var login = ""
+    @State var password = ""
     @State private var _isPasOpen = false
+    
+    @EnvironmentObject var server: Server    
 
     var body: some View
     {
@@ -37,7 +35,7 @@ struct LoginForm: View
                     .fill(Color.cyan)
                     .frame(width: 140, height: 4)
 
-                if self.loginStatus != nil && self.loginStatus == false
+                if self.server.loginStatus != nil && self.server.loginStatus == false
                 {
                     Text("Неправильный логин или пароль")
                         .foregroundColor(Color.red)
@@ -102,8 +100,7 @@ struct LoginForm: View
 
                         Button(action:
                         {
-                            let req = Server(login: self.login, password: self.password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData, studentGroup: self.$studentGroup)
-                            req.PostRequest()
+                            self.server.PostRequest(login: self.login, password: self.password)
                         })
                         {
                             ZStack

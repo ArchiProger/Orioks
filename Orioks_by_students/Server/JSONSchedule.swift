@@ -31,7 +31,7 @@ struct data: Decodable
 
 struct time: Decodable
 {
-    var Code: Int // Номер пары
+    var Time: String // Номер пары
     var TimeFrom: String // Начало пары
     var TimeTo: String // Конец пары
 }

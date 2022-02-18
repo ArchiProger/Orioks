@@ -11,53 +11,54 @@ import Kanna
 
 struct ContentView: View
 {
-    @State private var loginStatus: Bool? = nil //Должно быть nil
-    @State private var login = ""
-    @State private var password = ""
-    @State private var newsInfo: [[String]] = []
-    @State private var marksData = Education(dises: [])
     @State private var menuOpen = false
     @State private var openViewID: Int = 0
-    @State private var studentGroup: String = ""
+    
+    @ObservedObject var server = Server()
     
     var body: some View
     {
-        if loginStatus == true && loginStatus != nil
+        if self.server.loginStatus == true && self.server.loginStatus != nil
         {                
             ZStack
             {
-                Menu(menuOpen: self.$menuOpen, openViewID: self.$openViewID, studentGroup: self.$studentGroup)
+                Menu(openViewID: self.$openViewID, menuOpen: self.$menuOpen)
+                    .environmentObject(self.server)
                 
                 switch self.openViewID
                 {
                 case 0:
-                    News(newsInfo: self.$newsInfo, menuOpen: self.$menuOpen)
+                    News(menuOpen: self.$menuOpen)
                         .cornerRadius(self.menuOpen ? 10 : 0)
                         .rotationEffect(self.menuOpen ? Angle(degrees: -5) : Angle(degrees: 0))
                         .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
                         .ignoresSafeArea(.all)
+                        .environmentObject(self.server)
                     
                 case 1:
-                    Marks(data: self.$marksData, menuOpen: self.$menuOpen)
+                    Marks(menuOpen: self.$menuOpen)
                         .cornerRadius(self.menuOpen ? 10 : 0)
                         .rotationEffect(self.menuOpen ? Angle(degrees: -5) : Angle(degrees: 0))
                         .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
                         .ignoresSafeArea(.all)
+                        .environmentObject(self.server)
                     
                 default:
-                    Schedule(group: self.$studentGroup, menuOpen: self.$menuOpen)
+                    Schedule(group: self.server.studentGroup, menuOpen: self.$menuOpen)
                         .cornerRadius(self.menuOpen ? 10 : 0)
                         .rotationEffect(self.menuOpen ? Angle(degrees: -5) : Angle(degrees: 0))
                         .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
                         .ignoresSafeArea(.all)
                 }
             }
+            .shadow(radius: 10)
             .animation(.easeIn(duration: 0.3))
         }
         
         else
         {
-            LoginForm(login: self.$login, password: self.$password, loginStatus: self.$loginStatus, newsInfo: self.$newsInfo, marksData: self.$marksData, studentGroup: self.$studentGroup)
+            LoginForm()
+                .environmentObject(self.server)
         }
     }
 }

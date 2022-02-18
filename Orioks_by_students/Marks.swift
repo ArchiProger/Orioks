@@ -65,7 +65,7 @@ struct Events: View
                 
                 Text("(\(self.event.sh))")
                     .fontWeight(.heavy)
-
+                
                 
                 Spacer()
                 
@@ -235,6 +235,7 @@ struct DisciplineCard: View
         }
         .frame(width: side, height: side)
         .background(Color("MarksCard.Background"))
+        .foregroundColor(Color(uiColor: .label))
         .shadow(radius: 20)
         .cornerRadius(20)
     }
@@ -242,8 +243,9 @@ struct DisciplineCard: View
 
 struct Marks: View
 {
-    @Binding var data: Education
     @Binding var menuOpen: Bool
+    
+    @EnvironmentObject var server: Server
 
     var body: some View
     {
@@ -257,33 +259,33 @@ struct Marks: View
                 {
                     VStack
                     {
-                        ForEach(data.dises.indices.filter {$0 % 2 == 0}, id: \.self) { i in
+                        ForEach(self.server.marksData.dises.indices.filter {$0 % 2 == 0}, id: \.self) { i in
 
                             HStack(spacing: 7)
                             {
                                 Spacer()
                                 
-                                NavigationLink(destination: CardView(dise: self.$data.dises[i]))
+                                NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i]))
                                 {
-                                    DisciplineCard(dise: self.$data.dises[i])
+                                    DisciplineCard(dise: self.$server.marksData.dises[i])
                                         .shadow(radius: 10)
-                                }.foregroundColor(Color(uiColor: .label))
+                                }
 
-                                NavigationLink(destination: CardView(dise: self.$data.dises[i + 1]))
+                                NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i + 1]))
                                 {
-                                    DisciplineCard(dise: self.$data.dises[i + 1])
+                                    DisciplineCard(dise: self.$server.marksData.dises[i + 1])
                                         .shadow(radius: 10)
-                                }.foregroundColor(Color(uiColor: .label))
+                                }
 
                                 Spacer()
                             }
                         }
 
-                        if (data.dises.count % 2 != 0)
+                        if (self.server.marksData.dises.count % 2 != 0)
                         {
-                            NavigationLink(destination: CardView(dise: self.$data.dises.last!))
+                            NavigationLink(destination: CardView(dise: self.$server.marksData.dises.last!))
                             {
-                                DisciplineCard(dise: self.$data.dises.last!)
+                                DisciplineCard(dise: self.$server.marksData.dises.last!)
                                     .shadow(radius: 10)
                             }.foregroundColor(Color(uiColor: .label))
                         }
@@ -292,9 +294,10 @@ struct Marks: View
             }
             .navigationBarTitle("Оценки", displayMode: .automatic)
             .navigationBarItems(trailing:
-                Image(self.menuOpen ? "Exit" : "Menu")
+                Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
                     .resizable()
-                    .frame(width: UIScreen.screenWidth * 0.05, height: UIScreen.screenWidth * 0.05)
+                    .foregroundColor(Color("ElementsColor"))
+                    .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
                     .onTapGesture
                     {
                         self.menuOpen.toggle()

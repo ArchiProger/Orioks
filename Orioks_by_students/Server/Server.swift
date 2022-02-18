@@ -52,16 +52,14 @@ class NewsInfo
     }
 }
 
-struct Server
+class Server: ObservableObject
 {
-    @State var login: String
-    @State var password: String
-    @Binding var loginStatus: Bool?
-    @Binding var newsInfo: [[String]]
-    @Binding var marksData: Education
-    @Binding var studentGroup: String
+    @Published var loginStatus: Bool? = nil
+    @Published var newsInfo: [[String]] = []
+    @Published var marksData: Education = Education(dises: [])
+    @Published var studentGroup: String = ""
 
-    func getHTML(value: String?) -> HTMLDocument
+    private func getHTML(value: String?) -> HTMLDocument
     {
         var doc: HTMLDocument!
 
@@ -80,14 +78,14 @@ struct Server
         return doc
     }
 
-    func PostRequest()
+    func PostRequest(login: String, password: String)
     {
         var csrf = ""
 
         Alamofire.request("https://orioks.miet.ru/user/login")
             .responseString { response in
 
-                for data in getHTML(value: response.result.value).xpath("//input[@name='_csrf']")
+                for data in self.getHTML(value: response.result.value).xpath("//input[@name='_csrf']")
                 {
                     csrf = data["value"]!
                 }
@@ -95,14 +93,14 @@ struct Server
                 let param =
                 [
                     "_csrf": csrf,
-                    "LoginForm[login]": self.login,
-                    "LoginForm[password]": self.password,
+                    "LoginForm[login]": login,
+                    "LoginForm[password]": password,
                     "LoginForm[rememberMe]": "1"
                 ]
 
                 Alamofire.request("https://orioks.miet.ru/user/login", method: .post, parameters: param, headers: nil).responseString { response in
 
-                    for data in getHTML(value: response.result.value).xpath("//title")
+                    for data in self.getHTML(value: response.result.value).xpath("//title")
                     {
                         self.loginStatus = !(data.text == "Авторизация")
                     }
@@ -112,7 +110,7 @@ struct Server
                         Alamofire.request("https://orioks.miet.ru") //News
                             .responseString { response in
 
-                                let links = getHTML(value: response.result.value).xpath("//div[@id='news']//a")
+                                let links = self.getHTML(value: response.result.value).xpath("//div[@id='news']//a")
                                 
                                 for i in 0..<20
                                 {
@@ -123,7 +121,7 @@ struct Server
                                             {
                                             case .success(_):
                                                 let info = NewsInfo()
-                                                let html = getHTML(value: response.result.value).xpath("//div[@class='well']//text()")
+                                                let html = self.getHTML(value: response.result.value).xpath("//div[@class='well']//text()")
                                                 info.parsDoc(htmlDoc: html)
                                                 self.newsInfo.append(info.getInfoArray())
 
@@ -142,8 +140,8 @@ struct Server
                                 {
                                 case .success(let value):
 
-                                    let data = getHTML(value: value).xpath("//div[@id='forang']")[0].text!
-                                    self.studentGroup = getHTML(value: value).xpath("//select[@class='input-sm']//option")[0].text!.components(separatedBy: " ")[0]
+                                    let data = self.getHTML(value: value).xpath("//div[@id='forang']")[0].text!
+                                    self.studentGroup = self.getHTML(value: value).xpath("//select[@class='input-sm']//option")[0].text!.components(separatedBy: " ")[0]
 
                                     do
                                     {

@@ -23,9 +23,10 @@ struct MenuListButton: View
     {
         HStack
         {
-            Image(btnImg)
+            Image(systemName: self.btnImg)
                 .resizable()
                 .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                .foregroundColor(Color("ElementsColor"))
             Text(btnText)
                 .font(.title2)
                 .foregroundColor(Color.black)
@@ -36,10 +37,11 @@ struct MenuListButton: View
 
 struct Menu: View
 {
-    @Binding var menuOpen: Bool
     @Binding var openViewID: Int
-    @Binding var studentGroup: String
+    @Binding var menuOpen: Bool
+    
     @State private var date = Date()
+    @EnvironmentObject var server: Server
     
     func getWeekInfo() -> String
     {
@@ -74,7 +76,7 @@ struct Menu: View
                                 .font(.title3)
                                 .foregroundColor(Color.black)
                             
-                            Text(self.studentGroup)
+                            Text(self.server.studentGroup)
                                 .font(.title3)
                                 .foregroundColor(Color.black)
                         }
@@ -82,7 +84,7 @@ struct Menu: View
                     
                     VStack(alignment: .leading)
                     {
-                        MenuListButton(btnImg: "Newspaper", btnText: "Новости")
+                        MenuListButton(btnImg: "newspaper.fill", btnText: "Новости")
                             .background(self.openViewID == 0 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -91,7 +93,7 @@ struct Menu: View
                                 self.menuOpen = false
                             }
                         
-                        MenuListButton(btnImg: "Checkmark", btnText: "Оценки")
+                        MenuListButton(btnImg: "checkmark.seal.fill", btnText: "Оценки")
                             .background(self.openViewID == 1 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -100,7 +102,7 @@ struct Menu: View
                                 self.menuOpen = false
                             }
                         
-                        MenuListButton(btnImg: "Graduationcap", btnText: "Расписание")
+                        MenuListButton(btnImg: "graduationcap.fill", btnText: "Расписание")
                             .background(self.openViewID == 2 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -123,9 +125,10 @@ struct Menu: View
                     
                     HStack(spacing: 15)
                     {
-                        Image("Gear")
+                        Image(systemName: "gear")
                             .resizable()
                             .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                            .foregroundColor(Color.gray)
                         
                         Image("Bell")
                             .resizable()
