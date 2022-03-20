@@ -58,7 +58,7 @@ class Server: ObservableObject
     @Published var newsInfo: [[String]] = []
     @Published var marksData: Education = Education(dises: [])
     @Published var studentGroup: String = ""
-
+    
     private func getHTML(value: String?) -> HTMLDocument
     {
         var doc: HTMLDocument!
@@ -77,8 +77,27 @@ class Server: ObservableObject
 
         return doc
     }
+    
+    func getGroupList(settings: SettingsData)
+    {
+        guard let myURL = URL(string: "https://miet.ru/schedule/groups") else
+        {
+            print("Error: https://www.miet.ru/schedule doesn't seem to be a valid URL")
+            return
+        }
 
-    func PostRequest(login: String, password: String)
+        do
+        {
+            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+            settings.groupsList = try JSONDecoder().decode([String].self, from: myHTMLString.data(using: .isoLatin1, allowLossyConversion: true)!)                  
+        }
+        catch let error
+        {
+            print("Error: \(error)")
+        }            
+    }
+
+    func login(login: String, password: String, settings: SettingsData?)
     {
         var csrf = ""
 
@@ -95,7 +114,7 @@ class Server: ObservableObject
                     "_csrf": csrf,
                     "LoginForm[login]": login,
                     "LoginForm[password]": password,
-                    "LoginForm[rememberMe]": "1"
+                    "LoginForm[rememberMe]": "0"
                 ]
 
                 Alamofire.request("https://orioks.miet.ru/user/login", method: .post, parameters: param, headers: nil).responseString { response in
@@ -107,6 +126,12 @@ class Server: ObservableObject
 
                     if self.loginStatus != nil && self.loginStatus == true
                     {
+                        if settings != nil && settings!.autoSignIn
+                        {
+                            settings!.userLogin = login
+                            settings!.userPassword = password
+                        }
+                        
                         Alamofire.request("https://orioks.miet.ru") //News
                             .responseString { response in
 
@@ -140,11 +165,10 @@ class Server: ObservableObject
                                 {
                                 case .success(let value):
 
-                                    let data = self.getHTML(value: value).xpath("//div[@id='forang']")[0].text!
-                                    self.studentGroup = self.getHTML(value: value).xpath("//select[@class='input-sm']//option")[0].text!.components(separatedBy: " ")[0]
+                                    let data = self.getHTML(value: value).xpath("//div[@id='forang']")[0].text!                                    
 
                                     do
-                                    {
+                                    {                                        
                                         self.marksData = try JSONDecoder().decode(Education.self, from: Data(data.utf8))
                                     }
 
@@ -160,7 +184,31 @@ class Server: ObservableObject
                     }
                 }
             }
+    }
+    
+    func logout()
+    {
+        Alamofire.request("https://orioks.miet.ru/user/login")
+            .responseString { response in
+                
+                switch response.result
+                {
+                case .success(_):
+                    var csrf: String? = ""
+                    
+                    for data in self.getHTML(value: response.result.value).xpath("//meta[@name='csrf-token']")
+                    {
+                        csrf = data["content"]
+                    }
+                    
+                    if csrf != nil
+                    {
+                        Alamofire.request("https://orioks.miet.ru/user/logout", method: .post, parameters: ["_csrf": csrf!], headers: nil)
+                    }
 
-        print(self.newsInfo)
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
 }

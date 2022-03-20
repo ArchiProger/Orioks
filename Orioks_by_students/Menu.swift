@@ -28,7 +28,7 @@ struct MenuListButton: View
                 .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
                 .foregroundColor(Color("ElementsColor"))
             Text(btnText)
-                .font(.title2)
+                .font(.system(size: UIScreen.screenWidth * 0.05))
                 .foregroundColor(Color.black)
         }
         .padding(5)
@@ -63,24 +63,16 @@ struct Menu: View
                 
                 VStack(alignment: .trailing)
                 {
-                    ZStack
-                    {
-                        Circle()
-                            .fill(Color("Menu_circle"))
-                            .padding()
-                            .frame(width: UIScreen.screenWidth * 0.45, height: UIScreen.screenWidth * 0.45)
+                                                
+                    Text(self.getWeekInfo())
+                        .font(.system(size: UIScreen.screenWidth * 0.041))
+                        .frame(width: UIScreen.screenWidth * 0.4, height: UIScreen.screenWidth * 0.4)
+                        .background(Circle()
+                                        .fill(Color("Menu_circle")))
+                        .foregroundColor(Color.black)
+                        .padding()
                         
-                        VStack
-                        {
-                            Text(self.getWeekInfo())
-                                .font(.title3)
-                                .foregroundColor(Color.black)
-                            
-                            Text(self.server.studentGroup)
-                                .font(.title3)
-                                .foregroundColor(Color.black)
-                        }
-                    }
+                    
                     
                     VStack(alignment: .leading)
                     {
@@ -110,31 +102,18 @@ struct Menu: View
                                 self.openViewID = 2
                                 self.menuOpen = false
                             }
-                    }
-                    
-                    Spacer()
-                    
-                    HStack
-                    {
+                        
+                        MenuListButton(btnImg: "gear", btnText: "Настройки")
+                            .background(self.openViewID == 3 ? Color("Menu_exc") : Color.clear)
+                            .cornerRadius(10)
+                            .onTapGesture
+                            {
+                                self.openViewID = 3
+                                self.menuOpen = false
+                            }
+                        
                         Spacer()
-                        
-                        Capsule()
-                            .fill(Color.gray)
-                            .frame(width: UIScreen.screenWidth * 0.22, height: 4)
                     }
-                    
-                    HStack(spacing: 15)
-                    {
-                        Image(systemName: "gear")
-                            .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
-                            .foregroundColor(Color.gray)
-                        
-                        Image("Bell")
-                            .resizable()
-                            .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
-                    }
-                    
                 }.padding(20)
             }
         }

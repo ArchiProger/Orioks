@@ -18,6 +18,12 @@ struct Dises: Decodable
     var mvb: Float //Доступные баллы
     var segments: [Segments]
     var grade: Grade
+    var formControl: FormControl
+}
+
+struct FormControl: Decodable
+{
+    var name: String
 }
 
 struct Grade: Decodable

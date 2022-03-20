@@ -148,7 +148,7 @@ class NetworkSchedule: ObservableObject
                     do
                     {
                         let doc = try Kanna.HTML(html: html, encoding: String.Encoding.utf8).text!
-                        self.self.timetable = try JSONDecoder().decode(Timetable.self, from: doc.data(using: .isoLatin1, allowLossyConversion: true)!)
+                        self.timetable = try JSONDecoder().decode(Timetable.self, from: doc.data(using: .isoLatin1, allowLossyConversion: true)!)
                         
                         self.getSelectedDaySchedule()
                     }
@@ -285,6 +285,7 @@ struct Window: View
                 .foregroundColor(Color("ElementsColor"))
             
             Text(self.getTimeInterval())
+                .font(.system(size: UIScreen.screenWidth * 0.04))
         }
     }
 }
@@ -321,6 +322,7 @@ struct Pair: View
                 HStack
                 {
                     Text("\(self.number) " + self.pairData!.type)
+                        .font(.system(size: UIScreen.screenWidth * 0.04))
                         .fontWeight(.bold)
                         .background(
                             Capsule()
@@ -332,22 +334,22 @@ struct Pair: View
                     Spacer()
                     
                     Text(self.getTime(date: self.pairData!.timeFrom) + "-" + self.getTime(date: self.pairData!.timeTo))
-                        .font(.caption)
+                        .font(.system(size: UIScreen.screenWidth * 0.03))
                         .fontWeight(.bold)
                 }
                 
                 Text(self.pairData!.name!)
-                    .font(.body)
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
                     .fontWeight(.heavy)
                 
                 Text(self.pairData!.teacherName!)
-                    .font(.footnote)
+                    .font(.system(size: UIScreen.screenWidth * 0.03))
                     .fontWeight(.light)
                 
                 Spacer()
                 
                 Text(self.pairData!.room!)
-                    .font(.subheadline)
+                    .font(.system(size: UIScreen.screenWidth * 0.03))
                 
             }.padding()
         }
@@ -372,6 +374,7 @@ struct Dates: View
             ForEach(datesArray.indices) { i in
                 
                 Text("\(calendar.component(.day, from: datesArray[i]))")
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
                     .fontWeight(.bold)
                     .opacity((i == 5 || i == 6) ? 0.5 : 1)
                     .frame(width: UIScreen.screenWidth * 0.06)
@@ -463,18 +466,21 @@ struct DaysLine: View
     {
         ZStack
         {
-            VStack(spacing: 5)
+            VStack()
             {
                 HStack(spacing: UIScreen.screenHeight * 0.025)
                 {
                     ForEach(weekdays.indices) { i in
                         Text(weekdays[i])
+                            .font(.system(size: UIScreen.screenWidth * 0.04))
                             .fontWeight(.bold)
                             .opacity((i == 5 || i == 6) ? 0.5 : 1)
                             .frame(width: UIScreen.screenWidth * 0.06)
                             .padding(3)
                     }
                 }
+                
+                Spacer()
                 
                 GeometryReader { geometry in
                     
@@ -498,12 +504,16 @@ struct DaysLine: View
                                 self.offsetWidth = 0
                             }
                     )
-                }.frame(height: 30)
+                }.frame(height: UIScreen.screenHeight * 0.01)
+                
+                Spacer()
                 
                 Text(self.networkSchedule.currentDate, format: Date.FormatStyle().day().month().year())
-                    .font(.subheadline)
+                    .font(.system(size: UIScreen.screenWidth * 0.035))
+                    .italic()
             }
         }
+        .padding(5)
         .frame(width: UIScreen.screenWidth * 0.9, height: UIScreen.screenHeight * 0.1)
         .background(Color("MarksCard.Background"))
         .cornerRadius(20)
@@ -512,17 +522,17 @@ struct DaysLine: View
 
 struct Schedule: View
 {
-    @State var group: String
     @Binding var menuOpen: Bool
+    
+    @State private var showAlert = false
     
     @ObservedObject var networkSchedule = NetworkSchedule()
     
-    init(group: String, menuOpen: Binding<Bool>)
+    @EnvironmentObject var settings: SettingsData    
+    
+    init(menuOpen: Binding<Bool>)
     {
-        self._group = State(initialValue: group)
         self._menuOpen = menuOpen
-        
-        self.networkSchedule.scheduleRequest(group: self.group)
     }
     
     var body: some View
@@ -555,6 +565,8 @@ struct Schedule: View
                                 if self.networkSchedule.windowIndex(ind: i) == -1
                                 {
                                     Pair(number: i + 1, pairData: self.$networkSchedule.pairData[i])
+                                        .padding([.trailing, .leading], 10)
+                                        .shadow(radius: 5)
                                 }
                                 
                                 else
@@ -573,22 +585,42 @@ struct Schedule: View
                                 .foregroundColor(Color("ElementsColor"))
                             
                             Text("Пар нет")
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
                         }
                         
                         Spacer()
                     }
                 }
-            }
+            }        
             .navigationBarTitle("Расписание", displayMode: .automatic)
-            .navigationBarItems(trailing:
-                                    Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
-                                    .resizable()
-                                    .foregroundColor(Color("ElementsColor"))
-                                    .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
-                                    .onTapGesture {
-                self.menuOpen.toggle()
-            }
+            .navigationBarItems(
+                leading:
+                    Button(action: {self.showAlert = true})
+                    {
+                        Image(systemName: "questionmark")
+                            .foregroundColor(Color("ElementsColor"))
+                    }
+                    .alert(isPresented: self.$showAlert)
+                    {
+                        Alert(
+                            title: Text("Группа: \(self.settings.groupsList[self.settings.group])"),
+                            message: Text("Группу можно поменять в настройках")
+                        )
+                    },
+                trailing:
+                    Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
+                        .resizable()
+                        .foregroundColor(Color("ElementsColor"))
+                        .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
+                        .onTapGesture
+                        {
+                            self.menuOpen.toggle()
+                        }
             )
+        }
+        .onAppear()
+        {
+            self.networkSchedule.scheduleRequest(group: self.settings.groupsList[self.settings.group])
         }
     }
 }

@@ -10,6 +10,7 @@
 		2D23303227FEFFBD83D93C5F /* Pods_Orioks_by_students.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205DB1FA0C22B66E6566BB71 /* Pods_Orioks_by_students.framework */; };
 		7534649327AEEC6100072CDC /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534649227AEEC6100072CDC /* Schedule.swift */; };
 		753464CC27B0629400072CDC /* JSONSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753464CB27B0629400072CDC /* JSONSchedule.swift */; };
+		75B2BE5427BFD60500F756C3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B2BE5327BFD60500F756C3 /* Settings.swift */; };
 		C04660132753C24000445649 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04660122753C24000445649 /* Menu.swift */; };
 		C0688BD82752A59500041C51 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0688BD72752A59500041C51 /* Server.swift */; };
 		C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0892E71275193020014D195 /* Orioks_by_studentsApp.swift */; };
@@ -48,6 +49,7 @@
 		337FCD66C5F0BD4E2CF564B1 /* Pods-Orioks_by_students.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orioks_by_students.debug.xcconfig"; path = "Target Support Files/Pods-Orioks_by_students/Pods-Orioks_by_students.debug.xcconfig"; sourceTree = "<group>"; };
 		7534649227AEEC6100072CDC /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Schedule.swift; sourceTree = "<group>"; usesTabs = 0; };
 		753464CB27B0629400072CDC /* JSONSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSchedule.swift; sourceTree = "<group>"; };
+		75B2BE5327BFD60500F756C3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = "/Users/artur/Documents/Документы — MacBook Pro — Артур/Projects/swiftui/Orioks/Orioks_by_students/Settings.swift"; sourceTree = "<absolute>"; };
 		C04660122753C24000445649 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		C0688BD72752A59500041C51 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		C0892E6E275193020014D195 /* Orioks_by_students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orioks_by_students.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				C04660122753C24000445649 /* Menu.swift */,
 				C0ED8BFE275525860000B4C3 /* News.swift */,
 				C089A96C2763E69F0056EB49 /* Marks.swift */,
+				75B2BE5327BFD60500F756C3 /* Settings.swift */,
 				C0892E75275193040014D195 /* Assets.xcassets */,
 				C0892E77275193040014D195 /* Preview Content */,
 			);
@@ -368,6 +371,7 @@
 				C0892E72275193020014D195 /* Orioks_by_studentsApp.swift in Sources */,
 				C089A9652763E5220056EB49 /* LoginForm.swift in Sources */,
 				753464CC27B0629400072CDC /* JSONSchedule.swift in Sources */,
+				75B2BE5427BFD60500F756C3 /* Settings.swift in Sources */,
 				C089A96F2763FF0A0056EB49 /* JSONMarks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,8 +542,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,7 +555,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -571,8 +576,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,7 +589,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -693,7 +699,7 @@
 				C0892E91275193040014D195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C0892E92275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_students" */ = {
 			isa = XCConfigurationList;
@@ -702,7 +708,7 @@
 				C0892E94275193040014D195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C0892E95275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsTests" */ = {
 			isa = XCConfigurationList;
@@ -711,7 +717,7 @@
 				C0892E97275193040014D195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C0892E98275193040014D195 /* Build configuration list for PBXNativeTarget "Orioks_by_studentsUITests" */ = {
 			isa = XCConfigurationList;
@@ -720,7 +726,7 @@
 				C0892E9A275193040014D195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,7 +14,8 @@ struct LoginForm: View
     @State var password = ""
     @State private var _isPasOpen = false
     
-    @EnvironmentObject var server: Server    
+    @EnvironmentObject var server: Server
+    @EnvironmentObject var settings: SettingsData
 
     var body: some View
     {
@@ -22,7 +23,7 @@ struct LoginForm: View
         {
             Image("MIET_logo")
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: UIScreen.screenWidth * 0.2, height: UIScreen.screenWidth * 0.2)
                 .padding(20)
 
             VStack(spacing: 10)
@@ -35,7 +36,7 @@ struct LoginForm: View
                     .fill(Color.cyan)
                     .frame(width: 140, height: 4)
 
-                if self.server.loginStatus != nil && self.server.loginStatus == false
+                if self.server.loginStatus == false
                 {
                     Text("Неправильный логин или пароль")
                         .foregroundColor(Color.red)
@@ -43,31 +44,28 @@ struct LoginForm: View
 
                 ZStack
                 {
-                    Rectangle()
-                        .fill(Color("Color_SignIn"))
-                        .frame(width: 360, height: 200)
-                        .cornerRadius(40)
-                        .shadow(color: Color("Color_SignIn"), radius: 10)
-
-                    VStack(spacing: 30)
+                    VStack()
                     {
                         HStack
                         {
-                            Image("mail")
-                                .resizable()
-                                .frame(width: 35, height: 25)
+                            Image(systemName: "mail.fill")
+                                .foregroundColor(Color("Pink"))
+                                
 
                             VStack(spacing: 2)
                             {
                                 TextField("Номер студенческого билета", text: self.$login)
+                                    .frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenHeight * 0.05)
 
                                 Capsule()
                                     .fill(Color.gray)
-                                    .frame(width: 280, height: 2)
+                                    .frame(width: UIScreen.screenWidth * 0.7, height: 2)
                             }
 
                         }
 
+                        Spacer()
+                        
                         HStack
                         {
                             Button(action:
@@ -75,9 +73,8 @@ struct LoginForm: View
                                 self._isPasOpen.toggle()
                             })
                             {
-                                Image(self._isPasOpen ? "eye" : "eye.slash.fill")
-                                    .resizable()
-                                    .frame(width: 35, height: 25)
+                                Image(systemName: self._isPasOpen ? "eye.fill" : "eye.slash.fill")
+                                    .foregroundColor(Color("Pink"))
                             }
 
                             VStack(spacing: 2)
@@ -85,29 +82,33 @@ struct LoginForm: View
                                 if self._isPasOpen
                                 {
                                     TextField("Пароль", text: self.$password)
+                                        .frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenHeight * 0.05)
                                 }
 
                                 else
                                 {
                                     SecureField("Пароль", text: self.$password)
+                                        .frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenHeight * 0.05)
                                 }
 
                                 Capsule()
                                     .fill(Color.gray)
-                                    .frame(width: 280, height: 2)
+                                    .frame(width: UIScreen.screenWidth * 0.7, height: 2)
                             }
                         }
 
+                        Spacer()
+                        
                         Button(action:
                         {
-                            self.server.PostRequest(login: self.login, password: self.password)
+                            self.server.login(login: self.login, password: self.password, settings: self.settings)
                         })
                         {
                             ZStack
                             {
                                 Capsule()
                                     .fill(Color("Pink"))
-                                    .frame(width: 250, height: 40)
+                                    .frame(width: UIScreen.screenWidth * 0.5, height: UIScreen.screenHeight * 0.05)
 
                                 Text("Войти")
                                     .font(.title2)
@@ -115,7 +116,11 @@ struct LoginForm: View
                             }
                         }
                     }.padding(20)
-                }.frame(width: 360, height: 200)
+                }
+                .frame(width: UIScreen.screenWidth * 0.9, height: UIScreen.screenHeight * 0.22)
+                .background(Color("Color_SignIn"))
+                .shadow(color: Color("Color_SignIn"), radius: 10)
+                .cornerRadius(25)
             }
             Spacer()
         }.preferredColorScheme(.dark)

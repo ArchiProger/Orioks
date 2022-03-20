@@ -36,24 +36,26 @@ struct NewsCard: View, Identifiable
                             HStack
                             {
                                 Text("Дата: ")
-                                    .font(.title3)
+                                    .font(.system(size: UIScreen.screenWidth * 0.05))
                                     .fontWeight(.bold)
                                 
                                 Text(self.date)
+                                    .font(.system(size: UIScreen.screenWidth * 0.04))
                                 
                                 Spacer()
                                 
                                 Text("Время:")
-                                    .font(.title3)
+                                    .font(.system(size: UIScreen.screenWidth * 0.05))
                                     .fontWeight(.bold)
                                 
                                 Text(self.time)
+                                    .font(.system(size: UIScreen.screenWidth * 0.04))
                             }
                             
                             HStack
                             {
                                 Text(self.header)
-                                    .font(.title2)
+                                    .font(.system(size: UIScreen.screenWidth * 0.06))
                                     .fontWeight(.bold)
                                 Spacer()
                             }.padding(.top, 10)
@@ -70,22 +72,25 @@ struct NewsCard: View, Identifiable
                         HStack
                         {
                             Text("Дата: ")
-                                .font(.title3)
+                                .font(.system(size: UIScreen.screenWidth * 0.05))
                                 .fontWeight(.bold)
                             
                             Text(self.date)
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
                             
                             Spacer()
                             
                             Text("Время:")
-                                .font(.title3)
+                                .font(.system(size: UIScreen.screenWidth * 0.05))
                                 .fontWeight(.bold)
                             
                             Text(self.time)
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
                         }
                         
                         Spacer()
                         Text(self.header)
+                            .font(.system(size: UIScreen.screenWidth * 0.04))
                             .frame(width: UIScreen.screenWidth * 0.8, height: self.minHeight * 0.5)
                         Spacer()
                     }

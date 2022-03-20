@@ -10,7 +10,7 @@ import SwiftUI
 func getCircleColor(b: Float, mvd: Float) -> Color
 {
     let performance = b / mvd
-    var returnColor = Color.white
+    var returnColor = Color("Violet")
 
     if performance < 0.2
     {
@@ -51,8 +51,9 @@ extension Float
 struct Events: View
 {
     @State var isOpen = false
-    
+        
     @Binding var event: AllKms
+    @Binding var formControl: String
     
     var body: some View
     {
@@ -61,19 +62,25 @@ struct Events: View
             HStack
             {
                 Text("\(self.event.week)")
-                Text(self.event.type == nil ? "Экзамен" : self.event.type!.name)
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
+                
+                Text(self.event.type == nil ? formControl : self.event.type!.name)
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
                 
                 Text("(\(self.event.sh))")
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
                     .fontWeight(.heavy)
                 
                 
                 Spacer()
                 
                 Text("\(self.event.max_ball.clean)")
+                    .font(.system(size: UIScreen.screenWidth * 0.04))
                 
                 ZStack
                 {
-                    Text(self.event.balls.count == 0 ? "-": "\(self.event.balls[0].ball.clean)")
+                    Text(self.event.balls.count == 0 ? "-": (self.event.balls[0].ball == -1 ? "Н" : "\(self.event.balls[0].ball.clean)"))
+                        .font(.system(size: UIScreen.screenWidth * 0.04))
                     
                     Rectangle()
                         .stroke(Color("Violet"), style: StrokeStyle(lineWidth: 3))
@@ -116,7 +123,7 @@ struct CardView: View
             {
                 Text(dise.name)
                     .bold()
-                    .font(.title)
+                    .font(.system(size: UIScreen.screenWidth * 0.06))
                     .multilineTextAlignment(.center)
                     .frame(width: UIScreen.screenWidth * 0.8)
                     .padding(.bottom, 40)
@@ -129,7 +136,7 @@ struct CardView: View
                     {
                         ForEach(self.dise.segments[0].allKms.indices, id: \.self) { i in
                             
-                            Events(event: self.$dise.segments[0].allKms[i])
+                            Events(event: self.$dise.segments[0].allKms[i], formControl: self.$dise.formControl.name)
                                 .padding(10)
                             
                         }
@@ -137,18 +144,15 @@ struct CardView: View
                         HStack
                         {
                             Text("Текущая оценка")
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
                             
                             Spacer()
                             
-                            ZStack
-                            {
-                                Rectangle()
-                                    .fill(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
-                                    .frame(width: 80, height: 30)
-                                    .cornerRadius(4)
-                                
-                                Text(self.dise.grade.w)
-                            }
+                            Text(self.dise.grade.w)
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
+                                .padding(5)
+                                .background(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                                .cornerRadius(4)
                         }.padding(10)
                     }
                     .background(Color("MarksCard.Background"))
@@ -202,41 +206,60 @@ struct DisciplineCard: View
 {
     @Binding var dise: Dises
 
-    private let side = UIScreen.screenWidth * 0.46
-
     var body: some View
     {
         ZStack
         {
-            VStack(spacing: 0.2)
+            HStack()
             {
-                Text(self.dise.name)
-                    .padding(10)
-                    .multilineTextAlignment(.center)
-                    .font(.caption)
-
-                Spacer()
-
                 ZStack
                 {
                     DynamicCircle(maxBall: self.$dise.mvb, balls: self.$dise.grade.b, color: getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                        .padding()
 
                     VStack(spacing: 0.2)
                     {
                         Text("\(self.dise.grade.b.clean)")
+                            .font(.system(size: UIScreen.screenWidth * 0.04))
+                        
                         Capsule()
-                            .frame(width: self.side * 0.6 * 0.4, height: 1)
+                            .frame(width: UIScreen.screenWidth * 0.46 * 0.6 * 0.4, height: 1)
+                        
                         Text("\(self.dise.mvb.clean)")
+                            .font(.system(size: UIScreen.screenWidth * 0.04))
                     }
                 }
-
+                
                 Spacer()
+                
+                VStack
+                {
+                    Text(self.dise.name)
+                        .font(.system(size: UIScreen.screenWidth * 0.04))
+                        .padding(10)
+                        .multilineTextAlignment(.center)
+                    
+                    HStack
+                    {
+                        Text("Текущая оценка")
+                            .font(.system(size: UIScreen.screenWidth * 0.03))
+                        
+                        Spacer()
+                                                                    
+                        Text(self.dise.grade.w)
+                            .font(.system(size: UIScreen.screenWidth * 0.04))
+                            .padding(5)
+                            .background(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                            .cornerRadius(4)
+                        
+                    }.padding(10)
+                }
             }
         }
-        .frame(width: side, height: side)
+        .frame(width: UIScreen.screenWidth * 0.9, height: UIScreen.screenHeight * 0.2)
         .background(Color("MarksCard.Background"))
         .foregroundColor(Color(uiColor: .label))
-        .shadow(radius: 20)
+        .shadow(radius: 5)
         .cornerRadius(20)
     }
 }
@@ -246,7 +269,7 @@ struct Marks: View
     @Binding var menuOpen: Bool
     
     @EnvironmentObject var server: Server
-
+    
     var body: some View
     {
         NavigationView
@@ -254,54 +277,33 @@ struct Marks: View
             ZStack
             {
                 Color("Background").ignoresSafeArea(.all)
-
-                ScrollView
+                
+                ScrollView()
                 {
                     VStack
                     {
-                        ForEach(self.server.marksData.dises.indices.filter {$0 % 2 == 0}, id: \.self) { i in
-
-                            HStack(spacing: 7)
+                        ForEach(self.server.marksData.dises.indices, id: \.self) { i in
+                            
+                            NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i]))
                             {
-                                Spacer()
-                                
-                                NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i]))
-                                {
-                                    DisciplineCard(dise: self.$server.marksData.dises[i])
-                                        .shadow(radius: 10)
-                                }
-
-                                NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i + 1]))
-                                {
-                                    DisciplineCard(dise: self.$server.marksData.dises[i + 1])
-                                        .shadow(radius: 10)
-                                }
-
-                                Spacer()
-                            }
-                        }
-
-                        if (self.server.marksData.dises.count % 2 != 0)
-                        {
-                            NavigationLink(destination: CardView(dise: self.$server.marksData.dises.last!))
-                            {
-                                DisciplineCard(dise: self.$server.marksData.dises.last!)
+                                DisciplineCard(dise: self.$server.marksData.dises[i])
                                     .shadow(radius: 10)
-                            }.foregroundColor(Color(uiColor: .label))
+                                    .padding([.trailing, .leading], 20)
+                            }
                         }
                     }
                 }
             }
             .navigationBarTitle("Оценки", displayMode: .automatic)
             .navigationBarItems(trailing:
-                Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
-                    .resizable()
-                    .foregroundColor(Color("ElementsColor"))
-                    .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
-                    .onTapGesture
-                    {
-                        self.menuOpen.toggle()
-                    }
+                                    Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
+                                    .resizable()
+                                    .foregroundColor(Color("ElementsColor"))
+                                    .frame(width: UIScreen.screenWidth * 0.06, height: UIScreen.screenWidth * 0.06)
+                                    .onTapGesture
+                                {
+                self.menuOpen.toggle()
+            }
             )
         }
     }

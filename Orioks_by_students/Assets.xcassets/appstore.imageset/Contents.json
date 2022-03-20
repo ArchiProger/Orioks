@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "appstore.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "mail@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
