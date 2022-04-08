@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-func getCircleColor(b: Float, mvd: Float) -> Color
+func getCircleColor(maxBall: Float, currentBall: Float?) -> Color
 {
-    let performance = b / mvd
+    let performance = (currentBall ?? 0) / maxBall
     var returnColor = Color("Violet")
-
+    
     if performance < 0.2
     {
         returnColor = Color.red
@@ -52,8 +52,7 @@ struct Events: View
 {
     @State var isOpen = false
         
-    @Binding var event: AllKms
-    @Binding var formControl: String
+    @Binding var event: Event
     
     var body: some View
     {
@@ -64,22 +63,22 @@ struct Events: View
                 Text("\(self.event.week)")
                     .font(.system(size: UIScreen.screenWidth * 0.04))
                 
-                Text(self.event.type == nil ? formControl : self.event.type!.name)
+                Text(self.event.type)
                     .font(.system(size: UIScreen.screenWidth * 0.04))
                 
-                Text("(\(self.event.sh))")
+                Text(self.event.alias ?? "")
                     .font(.system(size: UIScreen.screenWidth * 0.04))
                     .fontWeight(.heavy)
                 
                 
                 Spacer()
                 
-                Text("\(self.event.max_ball.clean)")
+                Text("\(self.event.max_grade.clean)")
                     .font(.system(size: UIScreen.screenWidth * 0.04))
                 
                 ZStack
                 {
-                    Text(self.event.balls.count == 0 ? "-": (self.event.balls[0].ball == -1 ? "Н" : "\(self.event.balls[0].ball.clean)"))
+                    Text(self.event.current_grade == nil ? "-": (self.event.current_grade == -1 ? "Н" : "\(self.event.current_grade!.clean)"))
                         .font(.system(size: UIScreen.screenWidth * 0.04))
                     
                     Rectangle()
@@ -88,8 +87,8 @@ struct Events: View
                         .cornerRadius(4)
                     
                     Rectangle()
-                        .trim(from: CGFloat(self.event.balls.count == 0 ? 1 : 1 - (self.event.balls[0].ball / self.event.max_ball)), to: 1)
-                        .stroke(getCircleColor(b: self.event.balls.count == 0 ? 0 : self.event.balls[0].ball, mvd: self.event.max_ball), style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
+                        .trim(from: CGFloat(self.event.current_grade == nil ? 1 : 1 - (self.event.current_grade! / self.event.max_grade)), to: 1)
+                        .stroke(getCircleColor(maxBall: self.event.current_grade == nil ? 0 : self.event.current_grade!, currentBall: self.event.max_grade), style: StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round))
                         .rotationEffect(Angle(degrees: 180))
                         .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
                         .frame(width: 50, height: 30)
@@ -111,7 +110,7 @@ struct Events: View
 
 struct CardView: View
 {
-    @Binding var dise: Dises
+    @Binding var discipline: Discipline
     
     var body: some View
     {
@@ -121,7 +120,7 @@ struct CardView: View
             
             ScrollView
             {
-                Text(dise.name)
+                Text(self.discipline.name)
                     .bold()
                     .font(.system(size: UIScreen.screenWidth * 0.06))
                     .multilineTextAlignment(.center)
@@ -134,9 +133,9 @@ struct CardView: View
                     
                     VStack
                     {
-                        ForEach(self.dise.segments[0].allKms.indices, id: \.self) { i in
+                        ForEach(self.discipline.events!.indices, id: \.self) { i in
                             
-                            Events(event: self.$dise.segments[0].allKms[i], formControl: self.$dise.formControl.name)
+                            Events(event: Binding(self.$discipline.events)![i])
                                 .padding(10)
                             
                         }
@@ -148,10 +147,10 @@ struct CardView: View
                             
                             Spacer()
                             
-                            Text(self.dise.grade.w)
+                            Text(self.discipline.getGrade())
                                 .font(.system(size: UIScreen.screenWidth * 0.04))
                                 .padding(5)
-                                .background(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                                .background(getCircleColor(maxBall: self.discipline.max_grade, currentBall: self.discipline.current_grade))
                                 .cornerRadius(4)
                         }.padding(10)
                     }
@@ -171,8 +170,9 @@ struct DynamicCircle: View
     @State var isOpen = false
 
     @Binding var maxBall: Float
-    @Binding var balls: Float
-    var color: Color
+    @Binding var balls: Float?
+    var color: LinearGradient
+    var size: Float = 1
 
     private let diameter = UIScreen.screenWidth * 0.47 * 0.6
 
@@ -184,8 +184,8 @@ struct DynamicCircle: View
                 .stroke(Color("Violet"), style: StrokeStyle(lineWidth: 3))
 
             Circle()
-                .trim(from: self.isOpen ? CGFloat(1 - (self.balls / self.maxBall)) : 1, to: 1)
-                .stroke(self.color, style: StrokeStyle(lineWidth: 9, lineCap: .round, lineJoin: .round))
+                .trim(from: self.isOpen ? CGFloat(1 - ((self.balls ?? 0) / self.maxBall)) : 1, to: 1)
+                .stroke(self.color, style: StrokeStyle(lineWidth: 9 * CGFloat(self.size), lineCap: .round, lineJoin: .round))
                 .rotationEffect(Angle(degrees: 90))
                 .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
                 .onAppear(perform:
@@ -198,13 +198,13 @@ struct DynamicCircle: View
                 })
                 .animation(.easeIn(duration: self.isOpen ? 0.6 : 0))
 
-        }.frame(width: self.diameter, height: self.diameter)
+        }.frame(width: self.diameter * CGFloat(self.size), height: self.diameter * CGFloat(self.size))
     }
 }
 
 struct DisciplineCard: View
 {
-    @Binding var dise: Dises
+    @Binding var discipline: Discipline
 
     var body: some View
     {
@@ -214,19 +214,33 @@ struct DisciplineCard: View
             {
                 ZStack
                 {
-                    DynamicCircle(maxBall: self.$dise.mvb, balls: self.$dise.grade.b, color: getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                    DynamicCircle(maxBall: self.$discipline.max_grade, balls: self.$discipline.current_grade, color:
+                                    LinearGradient(gradient:
+                                                    Gradient(
+                                                        colors: [getCircleColor(maxBall: self.discipline.max_grade, currentBall: self.discipline.current_grade)]),
+                                                        startPoint: .topTrailing,
+                                                        endPoint: .bottomLeading))
                         .padding()
 
                     VStack(spacing: 0.2)
                     {
-                        Text("\(self.dise.grade.b.clean)")
-                            .font(.system(size: UIScreen.screenWidth * 0.04))
+                        if self.discipline.current_grade == nil
+                        {
+                            Capsule()
+                                .frame(width: UIScreen.screenWidth * 0.46 * 0.6 * 0.4, height: 1)
+                        }
                         
-                        Capsule()
-                            .frame(width: UIScreen.screenWidth * 0.46 * 0.6 * 0.4, height: 1)
-                        
-                        Text("\(self.dise.mvb.clean)")
-                            .font(.system(size: UIScreen.screenWidth * 0.04))
+                        else
+                        {
+                            Text("\(self.discipline.current_grade!.clean)")
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
+                            
+                            Capsule()
+                                .frame(width: UIScreen.screenWidth * 0.46 * 0.6 * 0.4, height: 1)
+                            
+                            Text("\(self.discipline.max_grade.clean)")
+                                .font(.system(size: UIScreen.screenWidth * 0.04))
+                        }
                     }
                 }
                 
@@ -234,7 +248,7 @@ struct DisciplineCard: View
                 
                 VStack
                 {
-                    Text(self.dise.name)
+                    Text(self.discipline.name)
                         .font(.system(size: UIScreen.screenWidth * 0.04))
                         .padding(10)
                         .multilineTextAlignment(.center)
@@ -246,10 +260,10 @@ struct DisciplineCard: View
                         
                         Spacer()
                                                                     
-                        Text(self.dise.grade.w)
+                        Text(self.discipline.getGrade())
                             .font(.system(size: UIScreen.screenWidth * 0.04))
                             .padding(5)
-                            .background(getCircleColor(b: self.dise.grade.b, mvd: self.dise.mvb))
+                            .background(getCircleColor(maxBall: self.discipline.max_grade, currentBall: self.discipline.current_grade))
                             .cornerRadius(4)
                         
                     }.padding(10)
@@ -269,6 +283,7 @@ struct Marks: View
     @Binding var menuOpen: Bool
     
     @EnvironmentObject var server: Server
+    @EnvironmentObject var settings: SettingsData
     
     var body: some View
     {
@@ -282,11 +297,11 @@ struct Marks: View
                 {
                     VStack
                     {
-                        ForEach(self.server.marksData.dises.indices, id: \.self) { i in
+                        ForEach(self.server.marksData.indices, id: \.self) { i in
                             
-                            NavigationLink(destination: CardView(dise: self.$server.marksData.dises[i]))
+                            NavigationLink(destination: CardView(discipline: self.$server.marksData[i]))
                             {
-                                DisciplineCard(dise: self.$server.marksData.dises[i])
+                                DisciplineCard(discipline: self.$server.marksData[i])
                                     .shadow(radius: 10)
                                     .padding([.trailing, .leading], 20)
                             }
@@ -305,6 +320,10 @@ struct Marks: View
                 self.menuOpen.toggle()
             }
             )
+        }.onAppear()
+        {
+            self.server.getGroupData(settings: self.settings)
+            self.server.getMarksData(settings: self.settings)
         }
     }
 }

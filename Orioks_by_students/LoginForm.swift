@@ -36,12 +36,9 @@ struct LoginForm: View
                     .fill(Color.cyan)
                     .frame(width: 140, height: 4)
 
-                if self.server.loginStatus == false
-                {
-                    Text("Неправильный логин или пароль")
-                        .foregroundColor(Color.red)
-                }
-
+                Text(self.server.authError)
+                    .foregroundColor(Color.red)
+                
                 ZStack
                 {
                     VStack()

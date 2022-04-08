@@ -40,7 +40,7 @@ class NetworkSchedule: ObservableObject
     @Published var selectedWeekday = getWeekday(day: Date())
     @Published var windowsData: [WindowsData] = []
     
-    @Published private var timetable = Timetable(Data: [], Times: [])
+    private var timetable = Timetable(Data: [], Times: [])
     
     func windowIndex(ind: Int) -> Int
     {
@@ -131,11 +131,11 @@ class NetworkSchedule: ObservableObject
         self.getSelectedDaySchedule()
     }
     
-    func scheduleRequest(group: String)
+    func scheduleRequest(settings: SettingsData)
     {
         let param =
         [
-            "group": group
+            "group": settings.groupsList[settings.group]
         ]
         
         Alamofire.request("https://miet.ru/schedule/data", method: .post, parameters: param, headers: nil).responseString { response in
@@ -522,18 +522,11 @@ struct DaysLine: View
 
 struct Schedule: View
 {
-    @Binding var menuOpen: Bool
+    @Binding var menuOpen: Bool        
     
-    @State private var showAlert = false
-    
-    @ObservedObject var networkSchedule = NetworkSchedule()
+    @StateObject var networkSchedule = NetworkSchedule()
     
     @EnvironmentObject var settings: SettingsData    
-    
-    init(menuOpen: Binding<Bool>)
-    {
-        self._menuOpen = menuOpen
-    }
     
     var body: some View
     {
@@ -594,19 +587,6 @@ struct Schedule: View
             }        
             .navigationBarTitle("Расписание", displayMode: .automatic)
             .navigationBarItems(
-                leading:
-                    Button(action: {self.showAlert = true})
-                    {
-                        Image(systemName: "questionmark")
-                            .foregroundColor(Color("ElementsColor"))
-                    }
-                    .alert(isPresented: self.$showAlert)
-                    {
-                        Alert(
-                            title: Text("Группа: \(self.settings.groupsList[self.settings.group])"),
-                            message: Text("Группу можно поменять в настройках")
-                        )
-                    },
                 trailing:
                     Image(systemName: self.menuOpen ? "xmark.app.fill" : "menucard.fill")
                         .resizable()
@@ -620,7 +600,8 @@ struct Schedule: View
         }
         .onAppear()
         {
-            self.networkSchedule.scheduleRequest(group: self.settings.groupsList[self.settings.group])
+            self.networkSchedule.scheduleRequest(settings: self.settings)
+            print("Data \(self.networkSchedule.pairData)")
         }
     }
 }

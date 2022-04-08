@@ -12,7 +12,7 @@ import Kanna
 struct ContentView: View
 {
     @State private var menuOpen = false
-    @State private var openViewID: Int = 0
+    @State private var openViewID: Int = 1
     
     @ObservedObject var settings = SettingsData()
     @ObservedObject var server = Server()
@@ -23,7 +23,7 @@ struct ContentView: View
     {
         return ZStack
         {
-            if self.server.loginStatus == true && self.server.loginStatus != nil
+            if self.settings.token != nil
             {
                 ZStack
                 {
@@ -31,15 +31,7 @@ struct ContentView: View
                         .environmentObject(self.server)
                     
                     switch self.openViewID
-                    {
-                    case 0:
-                        News(menuOpen: self.$menuOpen)
-                            .cornerRadius(self.menuOpen ? 10 : 0)
-                            .rotationEffect(self.menuOpen ? Angle(degrees: -5) : Angle(degrees: 0))
-                            .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
-                            .ignoresSafeArea(.all)
-                            .environmentObject(self.server)
-                        
+                    {                        
                     case 1:
                         Marks(menuOpen: self.$menuOpen)
                             .cornerRadius(self.menuOpen ? 10 : 0)
@@ -47,6 +39,7 @@ struct ContentView: View
                             .offset(x: self.menuOpen ? -UIScreen.screenWidth * 0.5 : 0)
                             .ignoresSafeArea(.all)
                             .environmentObject(self.server)
+                            .environmentObject(self.settings)
                         
                     case 2:
                         Schedule(menuOpen: self.$menuOpen)
@@ -81,18 +74,12 @@ struct ContentView: View
             }
             
         }
-        .environment(\.colorScheme, self.settings.themesSettings == 0 ? self.colorScheme : (self.settings.themesSettings == 1 ? .dark : .light))
-        .onAppear()
-        {
-            self.server.getGroupList(settings: self.settings)
-            
-            if self.settings.autoSignIn && (self.settings.userLogin != nil || self.settings.userPassword != nil)
-            {
-                self.server.login(login: self.settings.userLogin!, password: self.settings.userPassword!, settings: nil)
-            }
-        }
+        .environment(\.colorScheme, self.settings.themesSettings == 0 ? self.colorScheme : (self.settings.themesSettings == 1 ? .dark : .light))        
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification), perform: { output in            
-            self.server.logout()
+            if self.settings.autoSignIn == false
+            {
+                self.server.logout(settings: self.settings)
+            }
         })
     }
 }

@@ -76,7 +76,8 @@ struct Menu: View
                     
                     VStack(alignment: .leading)
                     {
-                        MenuListButton(btnImg: "newspaper.fill", btnText: "Новости")
+                        /*
+                         MenuListButton(btnImg: "newspaper.fill", btnText: "Новости")
                             .background(self.openViewID == 0 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -84,6 +85,7 @@ struct Menu: View
                                 self.openViewID = 0
                                 self.menuOpen = false
                             }
+                         */
                         
                         MenuListButton(btnImg: "checkmark.seal.fill", btnText: "Оценки")
                             .background(self.openViewID == 1 ? Color("Menu_exc") : Color.clear)
