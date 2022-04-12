@@ -98,7 +98,7 @@ struct UserCard: View
             {
                 ZStack
                 {
-                    DynamicCircle(maxBall: self.$server.maxCurrentMarks, balls: self.$server.allCurrentMarks, color: LinearGradient(gradient: Gradient(colors: [getCircleColor(maxBall: self.server.maxCurrentMarks, currentBall: self.server.allCurrentMarks)]), startPoint: .topTrailing, endPoint: .bottomLeading), size: 0.5)
+                    DynamicCircle(maxBall: self.$server.maxCurrentMarks, balls: self.$server.allCurrentMarks, color: LinearGradient(gradient: Gradient(colors: [getCircleColor(maxBall: self.server.maxCurrentMarks, currentBall: self.server.allCurrentMarks)]), startPoint: .topTrailing, endPoint: .bottomLeading), animation: false, size: 0.5)                        
                                         
                     Text(String(format: "%.1f", (self.server.allCurrentMarks! / self.server.maxCurrentMarks) * 100) + "%")
                         .font(.system(size: UIScreen.screenWidth * 0.04))

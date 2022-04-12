@@ -10,6 +10,17 @@ import Alamofire
 import Kanna
 import SwiftUI
 
+struct LoudDataInfo
+{
+    var marks = false
+    var group = false
+    
+    func dataExists() -> Bool
+    {
+        return self.marks && self.group
+    }
+}
+
 class NewsInfo
 {
     private var info: [String] = [] //date, time, header, news
@@ -53,10 +64,24 @@ class NewsInfo
 }
 
 class Server: ObservableObject
-{    
-    @Published var newsInfo: [[String]] = []
+{
+    @Published var loudDataInfo = LoudDataInfo()
     @Published var marksData: [Discipline] = []
+    {
+        didSet
+        {
+            loudDataInfo.marks = true
+        }
+    }
+    
     @Published var studentInfo: Student = Student(course: 1, full_name: "", group: "", study_direction: "", year: "")
+    {
+        didSet
+        {
+            loudDataInfo.group = true
+        }
+    }
+    
     @Published var authError: String = ""
     @Published var allCurrentMarks: Float? = 1
     @Published var maxCurrentMarks: Float = 1

@@ -82,7 +82,7 @@ struct Events: View
                         .font(.system(size: UIScreen.screenWidth * 0.04))
                     
                     Rectangle()
-                        .stroke(Color("Violet"), style: StrokeStyle(lineWidth: 3))
+                        .stroke(((self.event.current_grade ?? 1) / self.event.max_grade) == 0 ? Color.red : Color("Violet"), style: StrokeStyle(lineWidth: 3))
                         .frame(width: 50, height: 30)
                         .cornerRadius(4)
                     
@@ -172,6 +172,7 @@ struct DynamicCircle: View
     @Binding var maxBall: Float
     @Binding var balls: Float?
     var color: LinearGradient
+    var animation = true
     var size: Float = 1
 
     private let diameter = UIScreen.screenWidth * 0.47 * 0.6
@@ -196,7 +197,7 @@ struct DynamicCircle: View
                 {
                     self.isOpen.toggle()
                 })
-                .animation(.easeIn(duration: self.isOpen ? 0.6 : 0))
+                .animation(self.animation ? .easeIn(duration: self.isOpen ? 0.6 : 0) : .easeIn(duration: 0.3))
 
         }.frame(width: self.diameter * CGFloat(self.size), height: self.diameter * CGFloat(self.size))
     }
@@ -282,8 +283,7 @@ struct Marks: View
 {
     @Binding var menuOpen: Bool
     
-    @EnvironmentObject var server: Server
-    @EnvironmentObject var settings: SettingsData
+    @EnvironmentObject var server: Server    
     
     var body: some View
     {
@@ -320,11 +320,8 @@ struct Marks: View
                 self.menuOpen.toggle()
             }
             )
-        }.onAppear()
-        {
-            self.server.getGroupData(settings: self.settings)
-            self.server.getMarksData(settings: self.settings)
         }
+
     }
 }
 

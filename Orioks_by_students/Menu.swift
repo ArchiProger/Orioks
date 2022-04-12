@@ -75,9 +75,8 @@ struct Menu: View
                     
                     
                     VStack(alignment: .leading)
-                    {
-                        /*
-                         MenuListButton(btnImg: "newspaper.fill", btnText: "Новости")
+                    {                        
+                        MenuListButton(btnImg: "checkmark.seal.fill", btnText: "Оценки")
                             .background(self.openViewID == 0 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -85,9 +84,8 @@ struct Menu: View
                                 self.openViewID = 0
                                 self.menuOpen = false
                             }
-                         */
                         
-                        MenuListButton(btnImg: "checkmark.seal.fill", btnText: "Оценки")
+                        MenuListButton(btnImg: "graduationcap.fill", btnText: "Расписание")
                             .background(self.openViewID == 1 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
@@ -96,21 +94,12 @@ struct Menu: View
                                 self.menuOpen = false
                             }
                         
-                        MenuListButton(btnImg: "graduationcap.fill", btnText: "Расписание")
+                        MenuListButton(btnImg: "gear", btnText: "Настройки")
                             .background(self.openViewID == 2 ? Color("Menu_exc") : Color.clear)
                             .cornerRadius(10)
                             .onTapGesture
                             {
                                 self.openViewID = 2
-                                self.menuOpen = false
-                            }
-                        
-                        MenuListButton(btnImg: "gear", btnText: "Настройки")
-                            .background(self.openViewID == 3 ? Color("Menu_exc") : Color.clear)
-                            .cornerRadius(10)
-                            .onTapGesture
-                            {
-                                self.openViewID = 3
                                 self.menuOpen = false
                             }
                         

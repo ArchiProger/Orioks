@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct Semester: Decodable
+{
+    var semester_start: String
+}
+
 struct Timetable: Decodable
 {
     var Data: [data]

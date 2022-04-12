@@ -39,6 +39,7 @@ class NetworkSchedule: ObservableObject
     @Published var currentDate = Date()
     @Published var selectedWeekday = getWeekday(day: Date())
     @Published var windowsData: [WindowsData] = []
+    @Published var semester = Semester(semester_start: "")
     
     private var timetable = Timetable(Data: [], Times: [])
     
@@ -96,8 +97,13 @@ class NetworkSchedule: ObservableObject
     
     private func getSelectedDaySchedule()
     {
-        let calendar = Calendar.current
-        let week = (calendar.component(.weekOfYear, from: self.currentDate) + 2) % 4
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let semesterStart = dateFormatter.date(from: self.semester.semester_start)!
+        let timedelta = Calendar.current.dateComponents([.day], from: semesterStart, to: self.currentDate).day!
+        let week = (timedelta / 7) % 4
         
         self.pairData = .init(repeating: nil, count: self.timetable.Times.count)
         
@@ -150,7 +156,36 @@ class NetworkSchedule: ObservableObject
                         let doc = try Kanna.HTML(html: html, encoding: String.Encoding.utf8).text!
                         self.timetable = try JSONDecoder().decode(Timetable.self, from: doc.data(using: .isoLatin1, allowLossyConversion: true)!)
                         
-                        self.getSelectedDaySchedule()
+                        let head =
+                        [
+                            "Authorization": "Bearer " + settings.token!,
+                            "Accept": "application/json",
+                            "User-Agent": "api_tester/0.1 venv python"
+                        ]
+                        
+                        Alamofire.request("https://orioks.miet.ru/api/v1/schedule", method: .get, headers: head)
+                            .responseString {response in
+                                
+                                switch response.result
+                                {
+                                case .success(let value):
+                                    
+                                    do
+                                    {
+                                        self.semester = try JSONDecoder().decode(Semester.self, from: Data(value.utf8))                                                                                
+                                        
+                                        self.getSelectedDaySchedule()
+                                    }
+                                    catch
+                                    {
+                                        print(error)
+                                    }
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    
+                                }
+                            }
                     }
                     catch
                     {
@@ -213,8 +248,19 @@ class PairData
         
         if separatedString.count == 1
         {
-            self.type = "Пара"
+            let types = ["Лекция", "Практика", "Лаба", "Пара"]
+            
+            if types.firstIndex(of: separatedString[0]) != nil
+            {
+                self.type = separatedString[0]
+            }
+            
+            else
+            {
+                self.type = "Пара"
+            }
         }
+        
         else
         {
             self.name = separatedString[0]
@@ -601,7 +647,6 @@ struct Schedule: View
         .onAppear()
         {
             self.networkSchedule.scheduleRequest(settings: self.settings)
-            print("Data \(self.networkSchedule.pairData)")
         }
     }
 }
